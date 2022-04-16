@@ -1,8 +1,9 @@
-package com.example.toyexchangeandroid
+package com.example.toyexchangeandroid.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import com.example.toyexchangeandroid.R
 import com.example.toyexchangeandroid.fragments.*
 
 import com.google.android.material.bottomnavigation.BottomNavigationView

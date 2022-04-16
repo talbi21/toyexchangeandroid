@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.toyexchangeandroid">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,13 +15,13 @@
         android:hardwareAccelerated="false">
 
     <activity
-        android:name=".Login"
+        android:name=".ui.Login"
         android:exported="false" />
     <activity
-        android:name=".SignUp"
+        android:name=".ui.SignUp"
         android:exported="false" />
     <activity
-        android:name=".splashScreen"
+        android:name=".ui.splashScreen"
         android:exported="true">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
@@ -27,7 +30,7 @@
         </intent-filter>
     </activity>
     <activity
-        android:name=".MainActivity"
+        android:name=".ui.MainActivity"
         android:exported="true" />
 </application>
 
