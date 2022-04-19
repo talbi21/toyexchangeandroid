@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.EditProfile">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:backgroundTint="@color/white"
+            android:foregroundTint="@color/black"
+            android:layout_marginBottom="10dp"/>
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="130dp"
+            android:layout_height="126dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            app:srcCompat="@drawable/default_user" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Personnal :"
+            android:textSize="20sp"
+            android:textStyle="normal"
+            android:textColor="@color/black"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtLayoutUserName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            app:errorEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profilePic">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtUserName"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="UserName"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtLayoutUserEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            app:errorEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profilePic"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtUserEmail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Email"
+                android:inputType="textEmailAddress" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtLayoutUserPhoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            app:errorEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profilePic">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtUserPhoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Phone Number"
+                android:inputType="textPhonetic" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Set Location :"
+            android:textSize="20sp"
+            android:textStyle="normal"
+            android:textColor="@color/black"/>
+
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/mapView"
+            android:layout_width="match_parent"
+            android:layout_height="137dp"
+            android:layout_marginTop="5dp"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnUpdateProfile"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="20dp"
+            android:text="Update"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:layout_gravity="center" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

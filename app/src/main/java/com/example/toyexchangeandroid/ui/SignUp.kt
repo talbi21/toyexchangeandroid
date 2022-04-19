@@ -7,7 +7,7 @@ import android.util.Log
 import android.widget.Button
 import com.example.toyexchangeandroid.R
 import com.example.toyexchangeandroid.service.ApiService
-import com.example.toyexchangeandroid.service.UserService
+import com.example.toyexchangeandroid.service.ClientService
 import com.google.android.material.textfield.TextInputEditText
 import retrofit2.Call
 import retrofit2.Callback
@@ -33,8 +33,8 @@ class SignUp : AppCompatActivity() {
         btnSubmit = findViewById(R.id.btnSubmit)
 
         btnSubmit!!.setOnClickListener {
-            ApiService.userService.register(
-                UserService.UserBody(
+            ApiService.CLIENT_SERVICE.register(
+                ClientService.ClientBody(
                     txtFullName!!.text.toString() ,
                     txtEmail!!.text.toString(),
                     txtPassword!!.text.toString(),
@@ -42,10 +42,10 @@ class SignUp : AppCompatActivity() {
                 )
             )
                 .enqueue(
-                    object : Callback<UserService.UserResponse> {
+                    object : Callback<ClientService.ClientResponse> {
                         override fun onResponse(
-                            call: Call<UserService.UserResponse>,
-                            response: Response<UserService.UserResponse>
+                            call: Call<ClientService.ClientResponse>,
+                            response: Response<ClientService.ClientResponse>
                         ) {
                             if (response.code() == 200) {
                                 val intent =
@@ -58,7 +58,7 @@ class SignUp : AppCompatActivity() {
                         }
 
                         override fun onFailure(
-                            call: Call<UserService.UserResponse>,
+                            call: Call<ClientService.ClientResponse>,
                             t: Throwable
                         ) {
                             Log.d("FAIL", "fail")

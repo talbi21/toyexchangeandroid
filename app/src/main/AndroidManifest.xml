@@ -12,7 +12,30 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ToyExchangeAndroid"
-        android:hardwareAccelerated="false">
+        android:hardwareAccelerated="false"
+        android:usesCleartextTraffic="true">
+
+        <activity
+            android:name=".ui.ResetPassword"
+            android:exported="false" />
+        <activity
+            android:name=".ui.VerificationCode"
+            android:exported="false" />
+        <activity
+            android:name=".ui.SentVerificationEmail"
+            android:exported="false" />
+        <activity
+            android:name=".ui.Settings"
+            android:exported="false" />
+        <activity
+            android:name=".ui.ToyDetails"
+            android:exported="false" />
+        <activity
+            android:name=".ui.EditProfile"
+            android:exported="false" />
+        <activity
+            android:name=".ui.Profile"
+            android:exported="false" />
 
     <activity
         android:name=".ui.Login"
