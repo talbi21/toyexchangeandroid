@@ -1,4 +1,4 @@
-package com.example.toyexchangeandroid.fragments
+package com.example.toyexchangeandroid.ui.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
