@@ -1,29 +1,45 @@
 package com.example.toyexchangeandroid.ui
 
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
+import android.util.Patterns
 import android.view.View
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.TextView
 import android.widget.Toast
 import com.example.toyexchangeandroid.R
 import com.example.toyexchangeandroid.service.ApiService
 import com.example.toyexchangeandroid.service.ClientService
+import com.google.android.material.progressindicator.CircularProgressIndicator
 import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+const val PREF_NAME = "DATA_LOGIN"
+const val email = "email"
+const val password = "password"
+const val IS_REMEMBRED = "IS_REMEMBRED"
 
 class Login : AppCompatActivity() {
     private var btnSubmit: Button? = null
     private var toSignUp: TextView? = null
     private var toForgotPassword: TextView? = null
-    var txtEmail: TextInputEditText? = null
-    var txtPassword: TextInputEditText? = null
 
+    private var txtEmail: TextInputEditText? = null
+    private var txtPassword: TextInputEditText? = null
+
+    lateinit var cbRememberMe: CheckBox
+    lateinit var mSharedPref: SharedPreferences
+
+    private var txtLayoutEmail: TextInputLayout? = null
+    private var txtLayoutPassword: TextInputLayout? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,15 +51,27 @@ class Login : AppCompatActivity() {
         toSignUp = findViewById(R.id.ToSignUp)
         toForgotPassword = findViewById(R.id.ToForgotPassword)
 
+        txtLayoutEmail = findViewById(R.id.txtLayoutEmail)
+        txtLayoutPassword = findViewById(R.id.txtLayoutPassword)
+        cbRememberMe = findViewById(R.id.cbRememberMe)
+        mSharedPref = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
+
+
+        mSharedPref = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
+
+        if (mSharedPref.getBoolean(IS_REMEMBRED, false)){
+            navigate()
+        }
+
         //onClick btn
         btnSubmit!!.setOnClickListener {
+            doLogin()
             ApiService.CLIENT_SERVICE.login(
                 ClientService.LoginBody(
                     txtEmail!!.text.toString(),
                     txtPassword!!.text.toString()
                 )
-            )
-                .enqueue(
+            ).enqueue(
                     object : Callback<ClientService.ClientResponse> {
                         override fun onResponse(
                             call: Call<ClientService.ClientResponse>,
@@ -52,7 +80,6 @@ class Login : AppCompatActivity() {
                             if (response.code() == 200) {
                                 val intent = Intent(this@Login, MainActivity::class.java)
                                 startActivity(intent)
-
                                 finish()
                             } else {
                                 Log.d("HTTP ERROR", "status code is " + response.code())
@@ -71,7 +98,6 @@ class Login : AppCompatActivity() {
                         }
                     }
                 )
-
         }
 
         toSignUp!!.setOnClickListener( View.OnClickListener{
@@ -87,4 +113,59 @@ class Login : AppCompatActivity() {
         });
 
     }
+
+    private fun doLogin(){
+        if (validate()){
+            if (cbRememberMe.isChecked){
+
+                mSharedPref.edit().apply{
+                    putBoolean(IS_REMEMBRED, true)
+                    putString(email, txtEmail!!.text.toString())
+                    putString(password, txtPassword!!.text.toString())
+                    putBoolean(IS_REMEMBRED, cbRememberMe.isChecked)
+                }.apply()
+
+            }else{
+                mSharedPref.edit().clear().apply()
+            }
+
+            navigate()
+        }
+    }
+
+    private fun validate(): Boolean {
+        txtLayoutEmail!!.error = null
+        txtLayoutPassword!!.error = null
+
+        //validate fields
+        if (txtEmail?.text!!.isEmpty()) {
+            txtLayoutEmail!!.error = "must not be empty"
+            return false
+        }
+        if (!isEmailValid(txtEmail?.text.toString())){
+            txtLayoutEmail!!.error = "Check your email !"
+
+            return false
+        }
+        if (txtPassword?.text!!.isEmpty()) {
+            txtLayoutPassword!!.error = "must not be empty"
+            return false
+        }
+        //end validate fields
+
+        return true
+    }
+
+
+    private fun navigate(){
+        val mainIntent = Intent(this, MainActivity::class.java)
+        finish()
+        startActivity(mainIntent)
+    }
+
+    fun isEmailValid(email: String?): Boolean {
+        return !(email == null || TextUtils.isEmpty(email)) && Patterns.EMAIL_ADDRESS.matcher(email)
+            .matches()
+    }
+
 }

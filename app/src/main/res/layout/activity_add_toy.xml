@@ -1,28 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.fragments.AddFragment">
+    tools:context=".AddToyActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
+
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:background="?attr/colorPrimary"
+            android:backgroundTint="@color/white"
+            android:foregroundTint="@color/black"
+            android:minHeight="?attr/actionBarSize" />
 
         <ImageView
             android:id="@+id/ToyPic"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="20dp"
-            android:src="@color/dark"
-            android:gravity="center_horizontal"/>
+            android:gravity="center_horizontal"
+            android:src="@color/dark" />
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -34,6 +44,7 @@
             app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txtName"
                 android:layout_width="match_parent"
@@ -51,6 +62,7 @@
             app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txtDescription"
                 android:layout_width="match_parent"
@@ -72,11 +84,12 @@
                 android:id="@+id/txtLayoutSize"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
                 android:layout_marginTop="1dp"
+                android:layout_marginRight="5dp"
                 android:layout_marginBottom="1dp"
                 android:layout_weight="1"
                 app:errorEnabled="true">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtSize"
                     android:layout_width="match_parent"
@@ -94,6 +107,7 @@
                 android:layout_marginBottom="1dp"
                 android:layout_weight="1"
                 app:errorEnabled="true">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtPrice"
                     android:layout_width="match_parent"
@@ -112,8 +126,8 @@
             android:layout_marginBottom="20dp"
             android:text="Add"
             android:textColor="@color/white"
-            android:textSize="18sp"
-            />
+            android:textSize="18sp" />
     </LinearLayout>
 
-</FrameLayout>
+
+</RelativeLayout>

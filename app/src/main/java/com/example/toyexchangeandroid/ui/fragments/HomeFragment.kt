@@ -1,6 +1,7 @@
 package com.example.toyexchangeandroid.ui.fragments
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -9,14 +10,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.toyexchangeandroid.AddToyActivity
 import com.example.toyexchangeandroid.R
 import com.example.toyexchangeandroid.adapters.ToyAdapter
 import com.example.toyexchangeandroid.databinding.FragmentHomeBinding
 import com.example.toyexchangeandroid.models.Toy
 import com.example.toyexchangeandroid.service.ApiService
-
 import com.example.toyexchangeandroid.service.ToyService
-import com.example.toyexchangeandroid.ui.Profile
 import com.example.toyexchangeandroid.ui.Settings
 import retrofit2.Call
 import retrofit2.Callback
@@ -26,6 +26,7 @@ class HomeFragment : Fragment() {
 
     lateinit var recyclerView: RecyclerView
     var toyList : MutableList<Toy> = ArrayList()
+
     override fun onResume() {
         super.onResume()
        ApiService.toyService.getPosts()
@@ -65,6 +66,18 @@ class HomeFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
+        val bind = FragmentHomeBinding.inflate(layoutInflater)
+
+        bind.Tosettings.setOnClickListener{
+            val intent = Intent(this@HomeFragment.requireContext(), Settings::class.java)
+            startActivity(intent)
+        }
+
+        bind.ToAdd.setOnClickListener{
+            val intent = Intent(this@HomeFragment.requireContext(), AddToyActivity::class.java)
+            startActivity(intent)
+        }
+
 
 
         recyclerView = view.findViewById(R.id.userToysRecycleView)
@@ -75,12 +88,7 @@ class HomeFragment : Fragment() {
 
 
 
-
-
-
-
-
-        return view
+        return bind.root
     }
 
 
