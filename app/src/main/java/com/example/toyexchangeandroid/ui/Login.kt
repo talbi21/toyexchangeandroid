@@ -22,10 +22,10 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-const val PREF_NAME = "DATA_CV_PREF"
+const val PREF_NAME = "DATA_LOGIN"
 const val email = "email"
 const val password = "password"
-const val IS_REMEMBRED = "remembred"
+const val IS_REMEMBRED = "IS_REMEMBRED"
 
 class Login : AppCompatActivity() {
     private var btnSubmit: Button? = null
@@ -56,38 +56,16 @@ class Login : AppCompatActivity() {
         cbRememberMe = findViewById(R.id.cbRememberMe)
         mSharedPref = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
 
+
+        mSharedPref = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
+
+        if (mSharedPref.getBoolean(IS_REMEMBRED, false)){
+            navigate()
+        }
+
         //onClick btn
         btnSubmit!!.setOnClickListener {
-            txtLayoutEmail!!.error = null
-            txtLayoutPassword!!.error = null
-
-            if (txtEmail?.text!!.isEmpty()) {
-                txtLayoutEmail!!.error = "must not be empty"
-                return@setOnClickListener
-            }
-            if (!isEmailValid(txtEmail?.text.toString())){
-                txtLayoutEmail!!.error = "Check your email !"
-
-                return@setOnClickListener
-            }
-            if (txtPassword?.text!!.isEmpty()) {
-                txtLayoutPassword!!.error = "must not be empty"
-                return@setOnClickListener
-            }
-
-            mSharedPref.edit().apply {
-                putString(email, txtEmail!!.text.toString())
-                putString(password, txtPassword!!.text.toString())
-                putBoolean(IS_REMEMBRED, cbRememberMe.isChecked)
-
-            }.apply()
-
-            if (cbRememberMe.isChecked){
-                mSharedPref.edit().apply{
-                    putBoolean(IS_REMEMBRED, cbRememberMe.isChecked)
-                }.apply()
-            }
-
+            doLogin()
             ApiService.CLIENT_SERVICE.login(
                 ClientService.LoginBody(
                     txtEmail!!.text.toString(),
@@ -102,7 +80,6 @@ class Login : AppCompatActivity() {
                             if (response.code() == 200) {
                                 val intent = Intent(this@Login, MainActivity::class.java)
                                 startActivity(intent)
-
                                 finish()
                             } else {
                                 Log.d("HTTP ERROR", "status code is " + response.code())
@@ -121,7 +98,6 @@ class Login : AppCompatActivity() {
                         }
                     }
                 )
-
         }
 
         toSignUp!!.setOnClickListener( View.OnClickListener{
@@ -136,6 +112,55 @@ class Login : AppCompatActivity() {
 
         });
 
+    }
+
+    private fun doLogin(){
+        if (validate()){
+            if (cbRememberMe.isChecked){
+
+                mSharedPref.edit().apply{
+                    putBoolean(IS_REMEMBRED, true)
+                    putString(email, txtEmail!!.text.toString())
+                    putString(password, txtPassword!!.text.toString())
+                    putBoolean(IS_REMEMBRED, cbRememberMe.isChecked)
+                }.apply()
+
+            }else{
+                mSharedPref.edit().clear().apply()
+            }
+
+            navigate()
+        }
+    }
+
+    private fun validate(): Boolean {
+        txtLayoutEmail!!.error = null
+        txtLayoutPassword!!.error = null
+
+        //validate fields
+        if (txtEmail?.text!!.isEmpty()) {
+            txtLayoutEmail!!.error = "must not be empty"
+            return false
+        }
+        if (!isEmailValid(txtEmail?.text.toString())){
+            txtLayoutEmail!!.error = "Check your email !"
+
+            return false
+        }
+        if (txtPassword?.text!!.isEmpty()) {
+            txtLayoutPassword!!.error = "must not be empty"
+            return false
+        }
+        //end validate fields
+
+        return true
+    }
+
+
+    private fun navigate(){
+        val mainIntent = Intent(this, MainActivity::class.java)
+        finish()
+        startActivity(mainIntent)
     }
 
     fun isEmailValid(email: String?): Boolean {
