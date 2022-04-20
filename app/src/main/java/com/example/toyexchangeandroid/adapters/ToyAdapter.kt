@@ -13,7 +13,7 @@ class ToyAdapter(var items: MutableList<Toy>) :
     RecyclerView.Adapter<ToyAdapter.PostViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.element_toy, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.home_item, parent, false)
         return PostViewHolder(view)
     }
 
