@@ -14,9 +14,10 @@ class MainActivity : AppCompatActivity() {
 
         val homeFragment = HomeFragment()
         val likedListFragment = LikedListFragment()
-        val addFragment = AddFragment()
+        val profileFragment = ProfileFragment()
         val demandListFragment = DemandListFragment()
         val messageFragment = MessageFragment()
+
 
         makeCurrentFragment(homeFragment)
 
@@ -32,16 +33,18 @@ class MainActivity : AppCompatActivity() {
                     makeCurrentFragment(likedListFragment)
                     true
                 }
-                R.id.add -> {
+                R.id.profile -> {
                     // Respond to navigation item 1 click
-                    makeCurrentFragment(addFragment)
+                    makeCurrentFragment(profileFragment)
                     true
                 }
+
                 R.id.demandlist -> {
                     // Respond to navigation item 1 click
                     makeCurrentFragment(demandListFragment)
                     true
                 }
+
                 R.id.message -> {
                     // Respond to navigation item 1 click
                     makeCurrentFragment(messageFragment)
