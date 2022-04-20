@@ -2,70 +2,72 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     tools:context=".ui.fragments.HomeFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:orientation="vertical">
 
-        <LinearLayout
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="?attr/colorPrimary"
+            android:backgroundTint="@color/white"
+            android:foregroundTint="@color/black"
+            android:gravity="center_horizontal">
 
             <ImageButton
                 android:id="@+id/Tosettings"
-                android:layout_width="100dp"
-                android:layout_height="82dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="start"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginRight="10dp"
+                android:layout_marginBottom="20dp"
                 android:layout_weight="1"
+                android:background="@drawable/ic_settings_24"
                 android:scaleType="fitXY"
-                tools:ignore="SpeakableTextPresentCheck"
-                tools:src="@drawable/ic_settings_24" />
+                tools:ignore="SpeakableTextPresentCheck" />
 
-            <Space
-                android:layout_width="224dp"
-                android:layout_height="82dp"
-                android:layout_weight="1" />
-
-            <ImageButton
-                android:id="@+id/ToProfile"
-                android:layout_width="100dp"
-                android:layout_height="82dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                tools:ignore="SpeakableTextPresentCheck"
-                tools:src="@drawable/default_user" />
-
-        </LinearLayout>
+        </androidx.appcompat.widget.Toolbar>
 
         <SearchView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="0dp"
             android:layout_marginRight="10dp"
-            android:backgroundTint="@color/dark"
-            android:foregroundTint="@color/dark"/>
+            android:submitBackground="@drawable/bg_dark_rounded"
+            android:background="@drawable/bg_dark_rounded"
+
+            />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/userToysRecycleView"
-
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="10dp" />
 
-
     </LinearLayout>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/ToAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="16dp"
+        android:contentDescription="Add a Toy"
+        app:srcCompat="@drawable/ic_add_24"
+        app:tint="#FFFFFF"
+        android:backgroundTint="@color/purple_500"/>
 
 </FrameLayout>
