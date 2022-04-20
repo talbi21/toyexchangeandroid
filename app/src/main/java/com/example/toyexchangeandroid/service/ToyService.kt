@@ -20,7 +20,9 @@ interface ToyService {
         val toy: Toy
     )
 
-    data class ToyBody(val title: String, val description: String)
+
+    data class ToyBody(val Name: String, val description: String,val Size: String,
+                       val Price: String,val image: String,val Swapped: Boolean,val Rating: Int,val OwnerId: String)
 
     @POST("/Toy/add")
     fun addPost(@Body postBody: ToyBody): Call<ToyResponse>
