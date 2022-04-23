@@ -34,13 +34,14 @@
         <entry key="app/src/main/res/layout/activity_profile.xml" value="0.2223731884057971" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.18704710144927536" />
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.18704710144927536" />
-        <entry key="app/src/main/res/layout/demand_list_item.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/demand_list_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/element_toy.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_add.xml" value="0.18704710144927536" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.18704710144927536" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_liked_list.xml" value="0.18704710144927536" />
         <entry key="app/src/main/res/layout/fragment_message.xml" value="0.18704710144927536" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.21481481481481482" />
+        <entry key="app/src/main/res/layout/home_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/liked_list_item.xml" value="0.16077898550724637" />
         <entry key="app/src/main/res/menu/bottom_nav_bar_menu.xml" value="0.2953125" />
       </map>

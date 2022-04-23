@@ -13,21 +13,28 @@ import android.widget.CheckBox
 import android.widget.TextView
 import android.widget.Toast
 import com.example.toyexchangeandroid.R
+import com.example.toyexchangeandroid.models.Client
 import com.example.toyexchangeandroid.service.ApiService
 import com.example.toyexchangeandroid.service.ClientService
 import com.google.android.material.progressindicator.CircularProgressIndicator
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+
+
+const val myuser = "USER"
 const val PREF_NAME = "DATA_LOGIN"
 const val email = "email"
 const val password = "password"
 const val IS_REMEMBRED = "IS_REMEMBRED"
 
 class Login : AppCompatActivity() {
+    var gson = Gson()
+
     private var btnSubmit: Button? = null
     private var toSignUp: TextView? = null
     private var toForgotPassword: TextView? = null
@@ -66,38 +73,6 @@ class Login : AppCompatActivity() {
         //onClick btn
         btnSubmit!!.setOnClickListener {
             doLogin()
-            ApiService.CLIENT_SERVICE.login(
-                ClientService.LoginBody(
-                    txtEmail!!.text.toString(),
-                    txtPassword!!.text.toString()
-                )
-            ).enqueue(
-                    object : Callback<ClientService.ClientResponse> {
-                        override fun onResponse(
-                            call: Call<ClientService.ClientResponse>,
-                            response: Response<ClientService.ClientResponse>
-                        ) {
-                            if (response.code() == 200) {
-                                val intent = Intent(this@Login, MainActivity::class.java)
-                                startActivity(intent)
-                                finish()
-                            } else {
-                                Log.d("HTTP ERROR", "status code is " + response.code())
-
-                                Toast.makeText(this@Login,"Please Check Your Information",Toast.LENGTH_SHORT).show()
-                            }
-                        }
-
-                        override fun onFailure(
-                            call: Call<ClientService.ClientResponse>,
-                            t: Throwable
-                        ) {
-                            Log.d("FAIL", "fail server $t")
-                            Toast.makeText(this@Login,"Connection error",Toast.LENGTH_SHORT).show()
-
-                        }
-                    }
-                )
         }
 
         toSignUp!!.setOnClickListener( View.OnClickListener{
@@ -116,20 +91,52 @@ class Login : AppCompatActivity() {
 
     private fun doLogin(){
         if (validate()){
-            if (cbRememberMe.isChecked){
 
-                mSharedPref.edit().apply{
-                    putBoolean(IS_REMEMBRED, true)
-                    putString(email, txtEmail!!.text.toString())
-                    putString(password, txtPassword!!.text.toString())
-                    putBoolean(IS_REMEMBRED, cbRememberMe.isChecked)
-                }.apply()
+            ApiService.CLIENT_SERVICE.login(
+                ClientService.LoginBody(
+                    txtEmail!!.text.toString(),
+                    txtPassword!!.text.toString()
+                )
+            ).enqueue(
+                object : Callback<Client> {
+                    override fun onResponse(
+                        call: Call<Client>,
+                        response: Response<Client>
+                    ) {
+                        if (response.code() == 200) {
+                            //------------------------------------
+                            val json = gson.toJson(response.body())
+                            print("////////////////////////////////////////////////")
+                            Log.d("json",response.body().toString())
 
-            }else{
-                mSharedPref.edit().clear().apply()
-            }
+                                mSharedPref.edit().apply {
+                                    putString(myuser, json)
+                                    putBoolean(IS_REMEMBRED, true)
+                                    putBoolean(IS_REMEMBRED, cbRememberMe.isChecked)
 
-            navigate()
+                                }.apply()
+
+                            //------------------------------------
+                            val intent = Intent(this@Login, MainActivity::class.java)
+                            startActivity(intent)
+                            finish()
+                        } else {
+                            Log.d("HTTP ERROR", "status code is " + response.code())
+
+                            Toast.makeText(this@Login,"Please Check Your Information",Toast.LENGTH_SHORT).show()
+                        }
+                    }
+
+                    override fun onFailure(
+                        call: Call<Client>,
+                        t: Throwable
+                    ) {
+                        Log.d("FAIL", "fail server $t")
+                        Toast.makeText(this@Login,"Connection error",Toast.LENGTH_SHORT).show()
+
+                    }
+                }
+            )
         }
     }
 

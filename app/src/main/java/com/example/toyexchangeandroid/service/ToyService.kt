@@ -10,11 +10,6 @@ import retrofit2.http.POST
 
 interface ToyService {
 
-    data class ToysResponse(
-        @SerializedName("Toys")
-        val Toys: List<Toy>
-    )
-
     data class ToyResponse(
         @SerializedName("toy")
         val toy: Toy
@@ -26,5 +21,6 @@ interface ToyService {
     fun addPost(@Body postBody: ToyBody): Call<ToyResponse>
 
     @GET("/Toy")
-    fun getPosts(): Call<ToysResponse>
+    fun getPosts(): Call<MutableList<Toy>>
+
 }
