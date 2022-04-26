@@ -1,6 +1,6 @@
 package com.example.toyexchangeandroid.models
 
-
+import com.google.gson.annotations.SerializedName
 
 data class Toy(
     val _id: String,
