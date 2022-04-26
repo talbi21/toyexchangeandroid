@@ -15,7 +15,7 @@
         android:theme="@style/Theme.ToyExchangeAndroid"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".AddToyActivity"
+            android:name=".ui.AddToyActivity"
             android:exported="false" />
         <activity
             android:name=".ui.ResetPassword"
