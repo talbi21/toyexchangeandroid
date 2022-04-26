@@ -4,16 +4,25 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_margin="10dp">
 
         <ImageView
             android:id="@+id/ToyPic"
-            android:layout_width="140dp"
-            android:layout_height="140dp"
-            android:src="@mipmap/ic_launcher" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/boy"/>
+
+        <TextView
+            android:id="@+id/imagetitle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:textSize="18dp"
+            android:text="name"/>
+
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

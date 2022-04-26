@@ -17,8 +17,10 @@ interface ClientService {
     data class ClientBody(val userName: String, val email: String, val password: String, val phoneNumber: String)
 
     @POST("/Client/loginClient")
-    fun login(@Body loginBody: LoginBody): Call<ClientResponse>
+    fun login(@Body loginBody: LoginBody): Call<Client>
 
     @POST("/Client/add")
     fun register(@Body clientBody: ClientBody): Call<ClientResponse>
+
+
 }
