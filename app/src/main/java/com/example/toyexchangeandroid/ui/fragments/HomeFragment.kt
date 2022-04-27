@@ -32,7 +32,7 @@ class HomeFragment : Fragment() {
         recylcerToy = rootView.findViewById(R.id.userToysRecycleView)
 
         //toyList.add(Toy("61a0393fbed7e02acad09b7c","bear","brown coton bear","big","3099","uploads/1644420878782Image.jpeg",true,0,"wajdi"))
-        doLogin()
+        getToys()
 
         recylcerToyAdapter = ToyAdapter(toyList)
         recylcerToy.adapter = recylcerToyAdapter
@@ -41,7 +41,7 @@ class HomeFragment : Fragment() {
         return rootView
     }
 
-    private fun doLogin(){
+    private fun getToys(){
         ApiService.toyService.getPosts().enqueue(object : Callback<MutableList<Toy>> {
             override fun onResponse(call: Call<MutableList<Toy>>, response: Response<MutableList<Toy>>) {
                 val toy = response.body()

@@ -1,10 +1,7 @@
 package com.example.toyexchangeandroid.adapters;
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.toyexchangeandroid.R
 import com.example.toyexchangeandroid.models.Toy
@@ -21,10 +18,7 @@ class ToyAdapter(val ToyList: MutableList<Toy>) : RecyclerView.Adapter<ToyViewHo
 
     override fun onBindViewHolder(holder: ToyViewHolder, position: Int) {
 
-        //val image = ToyList[position].
         val title = ToyList[position].Name
-
-        //holder.QuestionName.text = name
         holder.ImageTitle.text = title
 
     }

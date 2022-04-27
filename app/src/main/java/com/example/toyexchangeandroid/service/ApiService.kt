@@ -21,4 +21,9 @@ object ApiService {
     val toyService: ToyService by lazy {
         retrofit().create(ToyService::class.java)
     }
+
+    val swapService: SwapService by lazy {
+        retrofit().create(SwapService::class.java)
+    }
+
 }
