@@ -114,7 +114,9 @@ class Login : AppCompatActivity() {
                                     putBoolean(IS_REMEMBRED, true)
                                     putBoolean(IS_REMEMBRED, cbRememberMe.isChecked)
 
+
                                 }.apply()
+                            mSharedPref.getString(myuser,"test1")?.let { Log.d("test2", it) }
 
                             //------------------------------------
                             val intent = Intent(this@Login, MainActivity::class.java)

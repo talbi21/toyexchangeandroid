@@ -36,9 +36,6 @@
             android:name=".ui.EditProfile"
             android:exported="false" />
         <activity
-            android:name=".ui.Profile"
-            android:exported="false" />
-        <activity
             android:name=".ui.Login"
             android:exported="false" />
         <activity

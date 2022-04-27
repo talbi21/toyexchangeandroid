@@ -16,4 +16,6 @@ class ToyViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView){
             ToyPic = itemView.findViewById<ImageView>(R.id.ToyPic)
             ImageTitle = itemView.findViewById<TextView>(R.id.imagetitle)
         }
+
+
 }
