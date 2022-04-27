@@ -60,7 +60,6 @@ class DemandListFragment : Fragment() {
         recylcerSwap.adapter = recylcerSwapAdapter
         recylcerSwap.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL ,false)
 
-
         return rootView
     }
 

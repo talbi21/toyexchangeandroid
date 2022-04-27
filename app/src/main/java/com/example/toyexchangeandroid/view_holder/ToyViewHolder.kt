@@ -9,11 +9,11 @@ import com.example.toyexchangeandroid.R
 class ToyViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView){
 
         val ToyPic : ImageView
-        val ImageTitle : TextView
+        //val ImageTitle : TextView
         //val QuestionTitle: TextView = itemView.findViewById<TextView>(R.id.markk)
 
         init {
             ToyPic = itemView.findViewById<ImageView>(R.id.ToyPic)
-            ImageTitle = itemView.findViewById<TextView>(R.id.imagetitle)
+           // ImageTitle = itemView.findViewById<TextView>(R.id.imagetitle)
         }
 }

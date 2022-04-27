@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.toyexchangeandroid.R
 import com.example.toyexchangeandroid.models.Toy
 import com.example.toyexchangeandroid.view_holder.ToyViewHolder
+import com.bumptech.glide.Glide
+import com.example.toyexchangeandroid.service.ApiService.BASE_URL
 
 class ToyAdapter(val ToyList: MutableList<Toy>) : RecyclerView.Adapter<ToyViewHolder>() {
 
@@ -18,8 +20,12 @@ class ToyAdapter(val ToyList: MutableList<Toy>) : RecyclerView.Adapter<ToyViewHo
 
     override fun onBindViewHolder(holder: ToyViewHolder, position: Int) {
 
-        val title = ToyList[position].Name
-        holder.ImageTitle.text = title
+        val toy = ToyList[position]
+        Glide.with(holder.ToyPic).load(BASE_URL + toy.image).placeholder(R.drawable.imageload)
+            .override(1000, 1000).error(R.drawable.notfoundd).into(holder.ToyPic)
+
+        //val title = ToyList[position].Name
+        //holder.ImageTitle.text = title
 
     }
 
