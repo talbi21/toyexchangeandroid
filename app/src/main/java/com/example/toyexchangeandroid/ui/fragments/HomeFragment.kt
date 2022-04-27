@@ -22,7 +22,7 @@ class HomeFragment : Fragment() {
     lateinit var recylcerToy: RecyclerView
     lateinit var recylcerToyAdapter: ToyAdapter
 
-    var toyList : MutableList<Toy> = ArrayList()
+    var toyList: MutableList<Toy> = ArrayList()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,15 +37,18 @@ class HomeFragment : Fragment() {
 
         recylcerToyAdapter = ToyAdapter(toyList)
         recylcerToy.adapter = recylcerToyAdapter
-
-        recylcerToy.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL ,false)
+        recylcerToy.layoutManager = GridLayoutManager(context, 2)
+        // recylcerToy.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL ,false)
 
         return rootView
     }
 
-    private fun doLogin(){
+    private fun doLogin() {
         ApiService.toyService.getPosts().enqueue(object : Callback<MutableList<Toy>> {
-            override fun onResponse(call: Call<MutableList<Toy>>, response: Response<MutableList<Toy>>) {
+            override fun onResponse(
+                call: Call<MutableList<Toy>>,
+                response: Response<MutableList<Toy>>
+            ) {
                 val toy = response.body()
 
                 if (toy != null) {
@@ -53,8 +56,9 @@ class HomeFragment : Fragment() {
                     recylcerToyAdapter = ToyAdapter(toyList)
                     recylcerToy.adapter = recylcerToyAdapter
                 }
-                Log.d("toys",toy.toString())
+                Log.d("toys", toy.toString())
             }
+
             override fun onFailure(call: Call<MutableList<Toy>>, t: Throwable) {
             }
         })
