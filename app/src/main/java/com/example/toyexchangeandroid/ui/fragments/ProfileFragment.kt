@@ -37,15 +37,17 @@ class ProfileFragment : Fragment() {
 
         txtEmail = bind.root.findViewById(R.id.Email)
         txtEmail.isEnabled = false
-        txtUserName = bind.root.findViewById(R.id.Email)
+        txtUserName = bind.root.findViewById(R.id.UserName)
         txtUserName.isEnabled = false
 
         //------------------
         val gson = Gson()
-        val  us =  sharedPreferences.getString(myuser, "")
+        val  us =  sharedPreferences.getString(myuser, "USER")
 
         nowuser = gson.fromJson(us,Client::class.java)
+        print("///////////////////")
         print(nowuser)
+        print("///////////////////")
 
         txtEmail.text = nowuser.email
         txtUserName.text = nowuser.userName

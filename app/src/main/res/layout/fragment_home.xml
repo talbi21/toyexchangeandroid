@@ -41,12 +41,11 @@
         <SearchView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="0dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="20dp"
             android:submitBackground="@drawable/bg_dark_rounded"
             android:background="@drawable/bg_dark_rounded"
-
             />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -54,9 +53,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="10dp" />
-
 
     </LinearLayout>
 

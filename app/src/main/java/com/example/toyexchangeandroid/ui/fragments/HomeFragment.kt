@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.toyexchangeandroid.R
@@ -32,16 +33,16 @@ class HomeFragment : Fragment() {
         recylcerToy = rootView.findViewById(R.id.userToysRecycleView)
 
         //toyList.add(Toy("61a0393fbed7e02acad09b7c","bear","brown coton bear","big","3099","uploads/1644420878782Image.jpeg",true,0,"wajdi"))
-        doLogin()
+        getToys()
 
         recylcerToyAdapter = ToyAdapter(toyList)
         recylcerToy.adapter = recylcerToyAdapter
-        recylcerToy.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL ,false)
+        recylcerToy.layoutManager = GridLayoutManager(context, 2)
 
         return rootView
     }
 
-    private fun doLogin(){
+    private fun getToys(){
         ApiService.toyService.getPosts().enqueue(object : Callback<MutableList<Toy>> {
             override fun onResponse(call: Call<MutableList<Toy>>, response: Response<MutableList<Toy>>) {
                 val toy = response.body()
