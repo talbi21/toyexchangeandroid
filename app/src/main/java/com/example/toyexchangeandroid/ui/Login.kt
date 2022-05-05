@@ -110,7 +110,11 @@ class Login : AppCompatActivity() {
                             val jsonObject = JSONTokener(token).nextValue() as JSONObject
                             val token2 = jsonObject.getString("token")
                             Log.d("token22",token2)
-                            getUser(token2)
+                            //getUser(token2)
+                            val intent = Intent(this@Login, MainActivity::class.java)
+                            startActivity(intent)
+                            finish()
+
 
                         } else {
                             Log.d("HTTP ERROR", "status code is " + response.code())
