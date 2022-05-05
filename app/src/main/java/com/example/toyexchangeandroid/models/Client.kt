@@ -17,9 +17,9 @@ data class Client(
     val image: String,
     @SerializedName("type")
     val type: String,
+)
 
-
-
-
-
-    )
+data class Token(
+    @SerializedName("token")
+    val token: String,
+)

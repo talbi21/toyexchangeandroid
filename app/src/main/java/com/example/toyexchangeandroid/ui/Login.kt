@@ -14,16 +14,18 @@ import android.widget.TextView
 import android.widget.Toast
 import com.example.toyexchangeandroid.R
 import com.example.toyexchangeandroid.models.Client
+import com.example.toyexchangeandroid.models.Token
 import com.example.toyexchangeandroid.service.ApiService
 import com.example.toyexchangeandroid.service.ClientService
 import com.google.android.material.progressindicator.CircularProgressIndicator
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.google.gson.Gson
+import org.json.JSONObject
+import org.json.JSONTokener
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-
 
 
 const val myuser = "USER"
@@ -98,30 +100,18 @@ class Login : AppCompatActivity() {
                     txtPassword!!.text.toString()
                 )
             ).enqueue(
-                object : Callback<Client> {
+                object : Callback<Token> {
                     override fun onResponse(
-                        call: Call<Client>,
-                        response: Response<Client>
+                        call: Call<Token>,
+                        response: Response<Token>
                     ) {
                         if (response.code() == 200) {
-                            //------------------------------------
-                            val json = gson.toJson(response.body())
+                            val token = gson.toJson(response.body())
+                            val jsonObject = JSONTokener(token).nextValue() as JSONObject
+                            val token2 = jsonObject.getString("token")
+                            Log.d("token22",token2)
+                            getUser(token2)
 
-                            Log.d("json",response.body().toString())
-
-                                mSharedPref.edit().apply {
-                                    putString(myuser, json)
-                                    putBoolean(IS_REMEMBRED, true)
-                                    putBoolean(IS_REMEMBRED, cbRememberMe.isChecked)
-
-
-                                }.apply()
-                            mSharedPref.getString(myuser,"test1")?.let { Log.d("test2", it) }
-
-                            //------------------------------------
-                            val intent = Intent(this@Login, MainActivity::class.java)
-                            startActivity(intent)
-                            finish()
                         } else {
                             Log.d("HTTP ERROR", "status code is " + response.code())
 
@@ -130,7 +120,7 @@ class Login : AppCompatActivity() {
                     }
 
                     override fun onFailure(
-                        call: Call<Client>,
+                        call: Call<Token>,
                         t: Throwable
                     ) {
                         Log.d("FAIL", "fail server $t")
@@ -141,6 +131,55 @@ class Login : AppCompatActivity() {
             )
         }
     }
+
+    fun getUser(token: String) {
+        //------------------get user from token------------------
+
+
+        ApiService.CLIENT_SERVICE.getUserFromToken(
+            ClientService.GetUserFromTokenBody(
+                token
+            )
+        ).enqueue(
+            object : Callback<Client> {
+                override fun onResponse(
+                    call: Call<Client>,
+                    response: Response<Client>
+                ) {
+                    if (response.code() == 200) {
+                        val clientJson = gson.toJson(response.body())
+                        Log.d("clientJson",response.body().toString())
+
+                        mSharedPref.edit().apply {
+                            putString(myuser, clientJson)
+                            putBoolean(IS_REMEMBRED, true)
+                            putBoolean(IS_REMEMBRED, cbRememberMe.isChecked)
+
+                        }.apply()
+                        //------------------------------------
+                        val intent = Intent(this@Login, MainActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    } else {
+                        Log.d("HTTP ERROR", "status code is " + response.code())
+
+                        Toast.makeText(this@Login,"Please Check Your Information",Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                override fun onFailure(
+                    call: Call<Client>,
+                    t: Throwable
+                ) {
+                    Log.d("FAIL", "fail server $t")
+                    Toast.makeText(this@Login,"Connection error",Toast.LENGTH_SHORT).show()
+
+                }
+            }
+        )
+        //--------------------------------------------------------
+    }
+
 
     private fun validate(): Boolean {
         txtLayoutEmail!!.error = null

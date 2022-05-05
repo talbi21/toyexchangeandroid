@@ -1,4 +1,4 @@
-package com.example.toyexchangeandroid.adapters;
+package com.example.toyexchangeandroid.adapters
 
 import android.content.Context
 import android.content.Intent
@@ -14,8 +14,8 @@ import com.example.toyexchangeandroid.service.ApiService.BASE_URL
 import com.example.toyexchangeandroid.ui.Details
 
 
-
-class ToyAdapter(var context: Context, val ToyList: MutableList<Toy>) : RecyclerView.Adapter<ToyViewHolder>() {
+class ToyAdapter(var context: Context, val ToyList: MutableList<Toy>) :
+    RecyclerView.Adapter<ToyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ToyViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -27,15 +27,11 @@ class ToyAdapter(var context: Context, val ToyList: MutableList<Toy>) : Recycler
     override fun onBindViewHolder(holder: ToyViewHolder, position: Int) {
 
         val toy = ToyList[position]
-        // val image = ToyList[position].image
+
         Glide.with(holder.ToyPic).load(BASE_URL + toy.image).placeholder(R.drawable.imageload)
             .override(1000, 1000).error(R.drawable.notfoundd).into(holder.ToyPic)
 
 
-        // Log.d("image",toy.image)
-        // val title = ToyList[position].Name
-
-        //holder.QuestionName.text = name
 
 
 
