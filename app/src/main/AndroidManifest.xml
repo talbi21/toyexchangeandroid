@@ -42,6 +42,9 @@
             android:name=".ui.SignUp"
             android:exported="false" />
         <activity
+            android:name=".ui.Details"
+            android:exported="false" />
+        <activity
             android:name=".ui.splashScreen"
             android:exported="true">
             <intent-filter>

@@ -35,7 +35,7 @@ class HomeFragment : Fragment() {
         //toyList.add(Toy("61a0393fbed7e02acad09b7c","bear","brown coton bear","big","3099","uploads/1644420878782Image.jpeg",true,0,"wajdi"))
         doLogin()
 
-        recylcerToyAdapter = ToyAdapter(toyList)
+        recylcerToyAdapter = ToyAdapter(requireContext(),toyList)
         recylcerToy.adapter = recylcerToyAdapter
         recylcerToy.layoutManager = GridLayoutManager(context, 2)
         // recylcerToy.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL ,false)
@@ -53,7 +53,7 @@ class HomeFragment : Fragment() {
 
                 if (toy != null) {
                     toyList = toy
-                    recylcerToyAdapter = ToyAdapter(toyList)
+                    recylcerToyAdapter = ToyAdapter(context!!,toyList)
                     recylcerToy.adapter = recylcerToyAdapter
                 }
                 Log.d("toys", toy.toString())
