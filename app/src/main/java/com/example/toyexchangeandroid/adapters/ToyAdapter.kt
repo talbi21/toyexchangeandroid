@@ -12,7 +12,7 @@ import com.example.toyexchangeandroid.models.Toy
 import com.example.toyexchangeandroid.view_holder.ToyViewHolder
 import com.example.toyexchangeandroid.service.ApiService.BASE_URL
 import com.example.toyexchangeandroid.ui.Details
-import com.bumptech.glide.Glide
+
 
 
 class ToyAdapter(var context: Context, val ToyList: MutableList<Toy>) : RecyclerView.Adapter<ToyViewHolder>() {
@@ -36,7 +36,8 @@ class ToyAdapter(var context: Context, val ToyList: MutableList<Toy>) : Recycler
         // val title = ToyList[position].Name
 
         //holder.QuestionName.text = name
-        holder.ImageTitle.text = toy.Name
+
+
 
         holder.itemView.setOnClickListener({
             Toast.makeText(context, toy.Name, Toast.LENGTH_LONG).show()
