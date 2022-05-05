@@ -12,6 +12,8 @@ import com.example.toyexchangeandroid.models.Toy
 import com.example.toyexchangeandroid.view_holder.ToyViewHolder
 import com.example.toyexchangeandroid.service.ApiService.BASE_URL
 import com.example.toyexchangeandroid.ui.Details
+import com.bumptech.glide.Glide
+
 
 class ToyAdapter(var context: Context, val ToyList: MutableList<Toy>) : RecyclerView.Adapter<ToyViewHolder>() {
 

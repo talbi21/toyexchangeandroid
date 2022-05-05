@@ -106,7 +106,7 @@ class Login : AppCompatActivity() {
                         if (response.code() == 200) {
                             //------------------------------------
                             val json = gson.toJson(response.body())
-                            print("////////////////////////////////////////////////")
+
                             Log.d("json",response.body().toString())
 
                                 mSharedPref.edit().apply {
