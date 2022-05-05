@@ -17,8 +17,6 @@ data class Toy(
     val image: String,
     @SerializedName("Swapped")
     val Swapped: Boolean,
-    @SerializedName("Rating")
-    val Rating: Int,
     @SerializedName("OwnerId")
     val OwnerId: String,
 
