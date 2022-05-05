@@ -14,6 +14,7 @@ interface ToyService {
         @SerializedName("toy")
         val toy: Toy
     )
+
     data class ToyBody(val Name: String, val Description: String,
                        val  Price:String,val Size: String, val Image: String,
                        val  Swapped:String,val OwnerId:String)
