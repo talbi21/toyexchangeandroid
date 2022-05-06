@@ -1,5 +1,6 @@
 package com.example.toyexchangeandroid.adapters
 
+import android.content.SharedPreferences
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -11,7 +12,9 @@ import com.example.toyexchangeandroid.models.Toy
 import com.example.toyexchangeandroid.service.ApiService
 import com.example.toyexchangeandroid.view_holder.SwapViewHolder
 
-class SwapAdapter (val SwapList: MutableList<Swap>,val ToyList: MutableList<Toy>) : RecyclerView.Adapter<SwapViewHolder>()  {
+class SwapAdapter (val SwapList: MutableList<Swap>,val ToyList: MutableList<Toy>, val UserId: String) : RecyclerView.Adapter<SwapViewHolder>()  {
+
+    lateinit var sharedPreferences: SharedPreferences
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SwapViewHolder {
@@ -23,7 +26,7 @@ class SwapAdapter (val SwapList: MutableList<Swap>,val ToyList: MutableList<Toy>
 
     override fun onBindViewHolder(holder: SwapViewHolder, position: Int) {
 
-        if ("6199c2d47da84e27902efd29" == SwapList[position].IdClient1) {
+        if (UserId == SwapList[position].IdClient1) {
             for (toy in ToyList ) {
                 if (SwapList[position].IdToy1 == toy._id){
 

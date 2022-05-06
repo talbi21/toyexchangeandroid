@@ -25,8 +25,9 @@
                 android:layout_height="match_parent"
                 app:cardCornerRadius="250dp"
                 android:layout_gravity="center">
+
                 <ImageView
-                    android:id="@+id/imageView"
+                    android:id="@+id/ProfilePic"
                     android:layout_width="150dp"
                     android:layout_height="match_parent"
                     android:scaleType="fitCenter"
@@ -49,7 +50,9 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="5dp"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/Location"
@@ -59,7 +62,8 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="5dp"
-                    android:text="Location" />
+                    android:text="Location"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/Email"
@@ -69,7 +73,9 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="5dp"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/PhoneNumber"
@@ -79,7 +85,9 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="5dp"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
             </LinearLayout>
 
         </LinearLayout>
@@ -98,6 +106,7 @@
             android:layout_gravity="center" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/mytoys"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"

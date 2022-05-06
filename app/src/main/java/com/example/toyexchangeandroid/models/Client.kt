@@ -15,8 +15,6 @@ data class Client(
     val phoneNumber: String,
     @SerializedName("image")
     val image: String,
-    @SerializedName("type")
-    val type: String,
 )
 
 data class Token(
