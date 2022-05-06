@@ -120,6 +120,7 @@
             android:layout_marginRight="20dp"
             android:layout_marginBottom="20dp"
             android:text="Update"
+            app:cornerRadius="10dp"
             android:textColor="@color/white"
             android:textSize="18sp"
             />

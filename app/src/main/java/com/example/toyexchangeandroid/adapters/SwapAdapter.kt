@@ -46,6 +46,7 @@ class SwapAdapter (val SwapList: MutableList<Swap>,val ToyList: MutableList<Toy>
                     holder.SwapDescription.text = "Demand to "+client2SwapType+ " , "+ client2ToyName
                 }
             }
+        
 
         }
 

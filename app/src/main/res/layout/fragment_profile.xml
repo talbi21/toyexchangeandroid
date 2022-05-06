@@ -102,6 +102,7 @@
             android:layout_marginBottom="20dp"
             android:text="Modify Profile"
             android:textColor="@color/white"
+            app:cornerRadius="10dp"
             android:textSize="18sp"
             android:layout_gravity="center" />
 

@@ -79,6 +79,7 @@
             android:layout_margin="20dp"
             android:text="Verify Code"
             android:textColor="@color/white"
+            app:cornerRadius="10dp"
             android:textSize="18sp"
             />
 

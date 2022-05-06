@@ -64,6 +64,7 @@
             android:layout_height="55dp"
             android:layout_margin="20dp"
             android:text="Confirm email"
+            app:cornerRadius="10dp"
             android:textColor="@color/white"
             android:textSize="18sp"
             />
