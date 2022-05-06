@@ -15,6 +15,12 @@
         android:theme="@style/Theme.ToyExchangeAndroid"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.SwapDemand"
+            android:exported="false" />
+        <activity
+            android:name=".ui.Details"
+            android:exported="false" />
+        <activity
             android:name=".ui.AddToyActivity"
             android:exported="false" />
         <activity

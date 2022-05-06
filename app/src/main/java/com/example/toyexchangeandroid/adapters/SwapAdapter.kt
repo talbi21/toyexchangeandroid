@@ -45,8 +45,7 @@ class SwapAdapter (val SwapList: MutableList<Swap>,val ToyList: MutableList<Toy>
                 }
 
             }
-
-
+        
     }
 
     override fun getItemCount() = SwapList.size

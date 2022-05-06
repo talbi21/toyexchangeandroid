@@ -45,9 +45,9 @@ class DemandListFragment : Fragment() {
 
         sharedPreferences = requireActivity().getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
 
-        val gson = Gson()
-        val  us =  sharedPreferences.getString(myuser, "USER")
-        nowuser = gson.fromJson(us, Client::class.java)
+        //val gson = Gson()
+        //val  us =  sharedPreferences.getString(myuser, "USER")
+        //nowuser = gson.fromJson(us, Client::class.java)
 
         getToys()
         //getSwaps(nowuser._id)
