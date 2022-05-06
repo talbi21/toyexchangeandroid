@@ -23,7 +23,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-
 class DemandListFragment : Fragment() {
 
     lateinit var recylcerSwap: RecyclerView
@@ -50,6 +49,7 @@ class DemandListFragment : Fragment() {
         nowuser = gson.fromJson(us, Client::class.java)
 
         getToys()
+        //getSwaps(nowuser._id)
         getSwaps(nowuser._id)
 
         Log.d("swap count count", swapList.count().toString())
