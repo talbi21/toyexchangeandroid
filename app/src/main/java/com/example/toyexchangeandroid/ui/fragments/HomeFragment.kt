@@ -50,7 +50,7 @@ class HomeFragment : Fragment() {
 
         getToys()
 
-        recylcerToyAdapter = ToyAdapter(toyList)
+        recylcerToyAdapter = ToyAdapter(requireContext(),toyList)
         recylcerToy.adapter = recylcerToyAdapter
         recylcerToy.layoutManager = GridLayoutManager(context, 2)
 
@@ -66,7 +66,7 @@ class HomeFragment : Fragment() {
 
                 if (toy != null) {
                     toyList = toy
-                    recylcerToyAdapter = ToyAdapter(toyList)
+                    recylcerToyAdapter = ToyAdapter(context!!,toyList)
                     recylcerToy.adapter = recylcerToyAdapter
                 }
                 Log.d("toys",toy.toString())

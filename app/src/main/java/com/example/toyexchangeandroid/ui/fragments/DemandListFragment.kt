@@ -51,12 +51,12 @@ class DemandListFragment : Fragment() {
 
         getToys()
         //getSwaps(nowuser._id)
-        getSwaps("6199c2d47da84e27902efd29")
+        getSwaps(nowuser._id)
 
         Log.d("swap count count", swapList.count().toString())
         Log.d("toy count count", toyList.count().toString())
 
-        recylcerSwapAdapter = SwapAdapter(swapList,toyList)
+        recylcerSwapAdapter = SwapAdapter(swapList,toyList,nowuser._id)
         recylcerSwap.adapter = recylcerSwapAdapter
         recylcerSwap.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL ,false)
 

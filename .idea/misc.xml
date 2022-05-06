@@ -4,7 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/dev/MiniProjetKotlin/app/src/main/res/drawable-v24/ic_settings_24.xml" value="0.12685185185185185" />
+        <entry key="..\:/dev/MiniProjetKotlin/app/src/main/res/drawable/ic_add_24.xml" value="0.17708333333333334" />
         <entry key="..\:/dev/MiniProjetKotlin/app/src/main/res/drawable/ic_settings_24.xml" value="0.17708333333333334" />
+        <entry key="..\:/dev/MiniProjetKotlin/app/src/main/res/layout/activity_details.xml" value="0.25" />
         <entry key="..\:/dev/MiniProjetKotlin/app/src/main/res/layout/activity_edit_profile.xml" value="0.15208333333333332" />
         <entry key="..\:/dev/MiniProjetKotlin/app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="..\:/dev/MiniProjetKotlin/app/src/main/res/layout/activity_main.xml" value="0.15208333333333332" />
@@ -20,6 +22,9 @@
         <entry key="..\:/dev/MiniProjetKotlin/app/src/main/res/layout/fragment_home.xml" value="0.15208333333333332" />
         <entry key="..\:/dev/MiniProjetKotlin/app/src/main/res/layout/fragment_liked_list.xml" value="0.15208333333333332" />
         <entry key="..\:/dev/MiniProjetKotlin/app/src/main/res/layout/fragment_message.xml" value="0.15208333333333332" />
+        <entry key="..\:/dev/MiniProjetKotlin/app/src/main/res/layout/fragment_profile.xml" value="0.30416666666666664" />
+        <entry key="..\:/dev/MiniProjetKotlin/app/src/main/res/layout/home_item.xml" value="0.30416666666666664" />
+        <entry key="..\:/dev/MiniProjetKotlin/app/src/main/res/layout/liked_list_item.xml" value="0.33" />
         <entry key="..\:/dev/MiniProjetKotlin/app/src/main/res/layout/row_item.xml" value="0.1" />
         <entry key="..\:/dev/MiniProjetKotlin/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.32916666666666666" />
         <entry key="..\:/dev/ToyExchangeAndroid/app/src/main/res/drawable/ic_launcher_background.xml" value="0.32916666666666666" />
