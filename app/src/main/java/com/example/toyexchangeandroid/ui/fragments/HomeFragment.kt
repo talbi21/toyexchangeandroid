@@ -66,7 +66,7 @@ class HomeFragment : Fragment() {
 
                 if (toy != null) {
                     toyList = toy
-                    recylcerToyAdapter = ToyAdapter(requireContext(),toyList)
+                    recylcerToyAdapter = ToyAdapter(context!!,toyList)
                     recylcerToy.adapter = recylcerToyAdapter
                 }
                 Log.d("toys",toy.toString())

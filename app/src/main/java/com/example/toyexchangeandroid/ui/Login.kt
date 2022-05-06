@@ -106,6 +106,7 @@ class Login : AppCompatActivity() {
                         response: Response<Token>
                     ) {
                         if (response.code() == 200) {
+
                             val token = gson.toJson(response.body())
                             val jsonObject = JSONTokener(token).nextValue() as JSONObject
                             val token2 = jsonObject.getString("token")
