@@ -91,6 +91,7 @@ class Login : AppCompatActivity() {
 
     }
 
+
     private fun doLogin(){
         if (validate()){
 
@@ -111,16 +112,7 @@ class Login : AppCompatActivity() {
                             val jsonObject = JSONTokener(token).nextValue() as JSONObject
                             val token2 = jsonObject.getString("token")
                             Log.d("token22",token2)
-                            //getUser(token2)
-
-
-                            val clientJson = gson.toJson(response.body())
-                            Log.d("clientJson",response.body().toString())
-
-                            val intent = Intent(this@Login, MainActivity::class.java)
-                            startActivity(intent)
-                            finish()
-
+                            getUser(token2)
 
                         } else {
                             Log.d("HTTP ERROR", "status code is " + response.code())

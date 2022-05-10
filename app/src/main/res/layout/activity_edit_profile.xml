@@ -101,7 +101,7 @@
             />
 
         <com.google.android.gms.maps.MapView
-            android:id="@+id/mapView2"
+            android:id="@+id/myMap"
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:layout_marginLeft="20dp"
