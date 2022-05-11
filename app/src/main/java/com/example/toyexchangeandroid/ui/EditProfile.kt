@@ -16,13 +16,11 @@ import com.example.toyexchangeandroid.models.Client
 import com.example.toyexchangeandroid.service.ApiService
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.*
 import com.google.gson.Gson
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+
 
 class EditProfile : AppCompatActivity() , OnMapReadyCallback {
 
@@ -35,6 +33,7 @@ class EditProfile : AppCompatActivity() , OnMapReadyCallback {
     lateinit var nowuser : Client
     lateinit var image : ImageView
 
+    var mapView: MapView? = null
 
     //map releted
     private lateinit var currentLocation: Location
@@ -47,6 +46,7 @@ class EditProfile : AppCompatActivity() , OnMapReadyCallback {
 
         //map releted
         fusedLocationProviderClient =  LocationServices.getFusedLocationProviderClient(this@EditProfile)
+        mapView = findViewById(R.id.myMap)
         fetchLocation()
 
         initView()
@@ -101,9 +101,12 @@ class EditProfile : AppCompatActivity() , OnMapReadyCallback {
                 currentLocation = location
                 Toast.makeText(applicationContext, currentLocation.latitude.toString() + "" +
                         currentLocation.longitude, Toast.LENGTH_SHORT).show()
+
                 val supportMapFragment = (supportFragmentManager.findFragmentById(R.id.myMap) as
                         SupportMapFragment?)!!
                 supportMapFragment.getMapAsync(this@EditProfile)
+
+
             }
         }
     }

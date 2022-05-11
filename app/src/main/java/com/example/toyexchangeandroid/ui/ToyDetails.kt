@@ -3,18 +3,55 @@ package com.example.toyexchangeandroid.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import com.bumptech.glide.Glide
 import com.example.toyexchangeandroid.R
+import com.example.toyexchangeandroid.models.Toy
 import com.example.toyexchangeandroid.service.ApiService
+import com.example.toyexchangeandroid.util.AppDataBase
+
+import com.google.android.material.snackbar.Snackbar
 
 class ToyDetails : AppCompatActivity() {
+
+    lateinit var imageButton : ImageButton
+    lateinit var  id :String
+    lateinit var  name :String
+    lateinit var  image :String
+    lateinit var description :String
+    lateinit var  Price :String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_toy_details)
         initView()
+        lateinit var educationList : MutableList<Toy>
+        lateinit var dataBase: AppDataBase
+        var test = 0
+        dataBase = AppDataBase.getDatabase(this)
+        educationList = dataBase.toydao().getAllEducations()
+        imageButton = findViewById(R.id.imageButton2)
+        imageButton.setOnClickListener{
+
+            for (name in educationList){
+                if(name.image == image){
+                    Toast.makeText(this@ToyDetails, "Toy Already Aded!!!", Toast.LENGTH_SHORT).show()
+                    test = 1
+                }
+
+            }
+            if (test==0){
+                AppDataBase.getDatabase(this).toydao().insert(
+                    Toy(0,id,name,description,"",Price,image,false,"")
+
+                )
+                test=1
+                Toast.makeText(this@ToyDetails, "Toy  Aded", Toast.LENGTH_SHORT).show()
+            }
+
+
+
+
+        }
     }
     var btnDemand: Button? = null
 
@@ -23,11 +60,11 @@ class ToyDetails : AppCompatActivity() {
 
 
         var intent = intent
-        var id = intent.getIntExtra("id", 0)
-        var name = intent.getStringExtra("Name")
-        var image = intent.getStringExtra("image")
-        var description = intent.getStringExtra("description")
-        var Price = intent.getStringExtra("Price")
+         id = intent.getStringExtra("id").toString()
+         name = intent.getStringExtra("Name").toString()
+         image = intent.getStringExtra("image").toString()
+         description = intent.getStringExtra("description").toString()
+         Price = intent.getStringExtra("Price").toString()
 
 
         var txtDtId = findViewById<TextView>(R.id.nametv)
