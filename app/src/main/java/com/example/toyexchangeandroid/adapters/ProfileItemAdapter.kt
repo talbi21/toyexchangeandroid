@@ -32,8 +32,9 @@ class ProfileItemAdapter(var context: Context, val ToyList: MutableList<Toy>) :
         Glide.with(holder.ToyPic).load(BASE_URL + toy.image).placeholder(R.drawable.imageload)
             .override(1000, 1000).error(R.drawable.notfoundd).into(holder.ToyPic)
 
-holder.ToyDescription.text = toy.description
+        holder.ToyDescription.text = toy.description
         holder.ToyName.text = toy.Name
+
 
 
 
@@ -50,8 +51,6 @@ holder.ToyDescription.text = toy.description
 //
 //
 //            context.startActivity(intent)
-//
-//
 //        })
 
     }

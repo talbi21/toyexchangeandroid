@@ -33,9 +33,6 @@ class ToyAdapter(var context: Context, val ToyList: MutableList<Toy>) :
             .override(1000, 1000).error(R.drawable.notfoundd).into(holder.ToyPic)
 
 
-
-
-
         holder.itemView.setOnClickListener {
             Toast.makeText(context, toy.Name, Toast.LENGTH_LONG).show()
             var intent = Intent(context, ToyDetails::class.java)
@@ -46,12 +43,12 @@ class ToyAdapter(var context: Context, val ToyList: MutableList<Toy>) :
             intent.putExtra("Price", toy.Price)
             intent.putExtra("_id", toy._id)
 
-
-
             context.startActivity(intent)
 
-
         }
+
+
+
 
     }
 
