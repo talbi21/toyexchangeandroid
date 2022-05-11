@@ -12,6 +12,7 @@ import com.example.toyexchangeandroid.models.Toy
 import com.example.toyexchangeandroid.view_holder.ToyViewHolder
 import com.example.toyexchangeandroid.service.ApiService.BASE_URL
 import com.example.toyexchangeandroid.ui.Details
+import com.example.toyexchangeandroid.ui.ToyDetails
 
 
 class ToyAdapter(var context: Context, val ToyList: MutableList<Toy>) :
@@ -32,12 +33,9 @@ class ToyAdapter(var context: Context, val ToyList: MutableList<Toy>) :
             .override(1000, 1000).error(R.drawable.notfoundd).into(holder.ToyPic)
 
 
-
-
-
-        holder.itemView.setOnClickListener({
+        holder.itemView.setOnClickListener {
             Toast.makeText(context, toy.Name, Toast.LENGTH_LONG).show()
-            var intent = Intent(context, Details::class.java)
+            var intent = Intent(context, ToyDetails::class.java)
 
             intent.putExtra("image", toy.image)
             intent.putExtra("Name", toy.Name)
@@ -45,12 +43,12 @@ class ToyAdapter(var context: Context, val ToyList: MutableList<Toy>) :
             intent.putExtra("Price", toy.Price)
             intent.putExtra("_id", toy._id)
 
-
-
             context.startActivity(intent)
 
+        }
 
-        })
+
+
 
     }
 
