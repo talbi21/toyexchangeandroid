@@ -30,7 +30,7 @@ data class Toy(
     val image: String,
     @ColumnInfo(name = "Swapped")
     @SerializedName("Swapped")
-    val Swapped: Boolean,
+    val Swapped: String,
     @ColumnInfo(name = "OwnerId")
     @SerializedName("OwnerId")
     val OwnerId: String,

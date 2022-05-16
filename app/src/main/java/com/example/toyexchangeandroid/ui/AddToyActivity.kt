@@ -11,6 +11,7 @@ import android.os.StrictMode
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.toyexchangeandroid.R
@@ -107,15 +108,15 @@ class AddToyActivity : AppCompatActivity() {
 
             ApiService.toyService.addPost(
                 imagee,
-                ToyService.ToyBody(
+
                     txtName!!.text.toString() ,
                     txtDescription!!.text.toString(),
                     txtPrice!!.text.toString(),
                     txtSize!!.text.toString(),
-                    "",
                     "false",
-                    ""
-                )
+                    "1",
+                    "aaa"
+
             ).enqueue(
                 object : Callback<ToyService.ToyResponse> {
                     override fun onResponse(
@@ -123,7 +124,8 @@ class AddToyActivity : AppCompatActivity() {
                         response: Response<ToyService.ToyResponse>
                     ) {
                         if (response.code() == 200) {
-                            Log.d("HTTP SUCCESS", "status code is " + response.code())
+                            Toast.makeText(this@AddToyActivity, "Toy  Aded!!!", Toast.LENGTH_SHORT).show()
+
                         } else {
                             Log.d("HTTP ERROR", "status code is " + response.code())
                         }

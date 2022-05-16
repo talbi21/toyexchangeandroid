@@ -20,7 +20,7 @@ abstract class AppDataBase : RoomDatabase() {
             if (instance == null) {
                 synchronized(this) {
                     instance =
-                        Room.databaseBuilder(context, AppDataBase::class.java, "toyList")
+                        Room.databaseBuilder(context, AppDataBase::class.java, "toyListaGAIN")
                             .allowMainThreadQueries()
                             .build()
                 }

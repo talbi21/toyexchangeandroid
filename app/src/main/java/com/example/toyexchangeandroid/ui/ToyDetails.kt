@@ -20,6 +20,7 @@ class ToyDetails : AppCompatActivity() {
     lateinit var  image :String
     lateinit var description :String
     lateinit var  Price :String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_toy_details)
@@ -41,7 +42,7 @@ class ToyDetails : AppCompatActivity() {
             }
             if (test==0){
                 AppDataBase.getDatabase(this).toydao().insert(
-                    Toy(0,id,name,description,"",Price,image,false,"")
+                    Toy(0,id,name,description,"",Price,image,"false","")
 
                 )
                 test=1

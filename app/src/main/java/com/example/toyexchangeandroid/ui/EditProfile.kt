@@ -1,14 +1,14 @@
 package com.example.toyexchangeandroid.ui
 
-import android.content.SharedPreferences
 import android.Manifest
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.location.Location
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.bumptech.glide.Glide
 import com.example.toyexchangeandroid.R
@@ -16,13 +16,17 @@ import com.example.toyexchangeandroid.models.Client
 import com.example.toyexchangeandroid.service.ApiService
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import com.google.android.gms.maps.*
-import com.google.gson.Gson
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.MapView
+import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.gson.Gson
+import com.mapbox.mapboxsdk.maps.OnMapReadyCallback
 
 
-class EditProfile : AppCompatActivity() , OnMapReadyCallback {
+class EditProfile : AppCompatActivity()  {
 
     private lateinit var txtUserName: TextView
     private lateinit var txtLocation: TextView
@@ -33,9 +37,10 @@ class EditProfile : AppCompatActivity() , OnMapReadyCallback {
     lateinit var nowuser : Client
     lateinit var image : ImageView
 
-    var mapView: MapView? = null
+
 
     //map releted
+    var mapView: MapView? = null
     private lateinit var currentLocation: Location
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private val permissionCode = 101
@@ -45,14 +50,13 @@ class EditProfile : AppCompatActivity() , OnMapReadyCallback {
         setContentView(R.layout.activity_edit_profile)
 
         //map releted
-        fusedLocationProviderClient =  LocationServices.getFusedLocationProviderClient(this@EditProfile)
-        mapView = findViewById(R.id.myMap)
+          fusedLocationProviderClient =  LocationServices.getFusedLocationProviderClient(this@EditProfile)
+
         fetchLocation()
 
         initView()
 
     }
-
 
     private fun initView() {
 
@@ -85,6 +89,8 @@ class EditProfile : AppCompatActivity() , OnMapReadyCallback {
 
     }
 
+
+
     private fun fetchLocation() {
         if (ActivityCompat.checkSelfPermission(
                 this, Manifest.permission.ACCESS_FINE_LOCATION) !=
@@ -102,9 +108,11 @@ class EditProfile : AppCompatActivity() , OnMapReadyCallback {
                 Toast.makeText(applicationContext, currentLocation.latitude.toString() + "" +
                         currentLocation.longitude, Toast.LENGTH_SHORT).show()
 
+                mapView = findViewById(R.id.myMap)
                 val supportMapFragment = (supportFragmentManager.findFragmentById(R.id.myMap) as
-                        SupportMapFragment?)!!
-                supportMapFragment.getMapAsync(this@EditProfile)
+                       SupportMapFragment?)!!
+
+                supportMapFragment.getMapAsync(com.google.android.gms.maps.OnMapReadyCallback { mapView })
 
 
             }
@@ -122,7 +130,7 @@ class EditProfile : AppCompatActivity() , OnMapReadyCallback {
         }
     }
 
-    override fun onMapReady(googleMap: GoogleMap) {
+    fun onMapReady(googleMap: GoogleMap) {
         val latLng = LatLng(currentLocation.latitude, currentLocation.longitude)
         val markerOptions = MarkerOptions().position(latLng).title("I am here!")
         googleMap?.animateCamera(CameraUpdateFactory.newLatLng(latLng))

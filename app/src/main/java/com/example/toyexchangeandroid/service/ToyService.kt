@@ -19,9 +19,11 @@ interface ToyService {
                        val  Swapped:String,val OwnerId:String)
 
     @Multipart
-    @FormUrlEncoded
-    @POST("/Toy/add")
-    fun addPost(@Part image: MultipartBody.Part,@Body toyBody: ToyBody): Call<ToyResponse>
+    @POST("/Toy/add/{Name}/{Description}/{Size}/{Price}/{Swapped}/{Rating}/{OwnerId}")
+    fun addPost(@Part image: MultipartBody.Part,@Path("Name")Name : String,
+                @Path("Description")Description : String,@Path("Size")Size : String,
+                @Path("Price")Price : String,@Path("Swapped")Swapped : String,
+                @Path("Rating")Rating : String,@Path("OwnerId")OwnerId : String): Call<ToyResponse>
 
     @GET("/Toy")
     fun getPosts(): Call<MutableList<Toy>>

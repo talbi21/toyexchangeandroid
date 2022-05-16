@@ -59,6 +59,7 @@
         <entry key="app/src/main/res/layout/fragment_demand_list.xml" value="0.20697463768115942" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_liked_list.xml" value="0.18704710144927536" />
+        <entry key="app/src/main/res/layout/fragment_map.xml" value="0.1671875" />
         <entry key="app/src/main/res/layout/fragment_message.xml" value="0.18704710144927536" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.21481481481481482" />
         <entry key="app/src/main/res/layout/home_item.xml" value="0.20499580775447243" />
