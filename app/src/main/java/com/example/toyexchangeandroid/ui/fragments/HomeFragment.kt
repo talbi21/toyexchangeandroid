@@ -55,7 +55,6 @@ class HomeFragment : Fragment() {
         recylcerToy.layoutManager = GridLayoutManager(context, 2)
 
 
-
         return bind.root
     }
 

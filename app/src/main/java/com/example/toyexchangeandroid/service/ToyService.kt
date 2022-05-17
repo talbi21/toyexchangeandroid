@@ -31,4 +31,8 @@ interface ToyService {
     @GET("/Toy/me/{OwnerId}")
     fun getmyPosts( @Path("OwnerId")OwnerId : String): Call<MutableList<Toy>>
 
+    @DELETE("/Toy/delete/{toyID}")
+    fun deleteToy( @Path("toyID")toyID : String): Call<Toy>
+
+
 }
