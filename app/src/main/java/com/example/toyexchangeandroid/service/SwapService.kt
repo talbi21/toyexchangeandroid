@@ -25,8 +25,8 @@ interface SwapService {
     fun demandByClient1( @Path("idClient1") idClient1 : String): Call<MutableList<Swap>>
 
 
-    //@GET("/Swap/demandByClient/{idClient1}" )
-    //fun demandByClient1(@Body info: RequestBody, @Path("idClient1") idClient1 : String): Call<Swap>
+    @GET("/Swap/demandByToy/{idToy}" )
+    fun demandByToy( @Path("idToy") idToy : String): Call<MutableList<Swap>>
 
 
 }

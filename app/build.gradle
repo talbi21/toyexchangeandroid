@@ -70,6 +70,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-location:17.0.0'
 
     //swipe to delete
+    implementation 'it.xabaras.android:recyclerview-swipedecorator:1.2.3'
     //noinspection GradleCompatible
     implementation 'com.android.support:recyclerview-v7:28.+'
     //noinspection GradleCompatible

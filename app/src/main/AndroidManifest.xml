@@ -3,7 +3,7 @@
     package="com.example.toyexchangeandroid">
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -20,6 +20,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ToyExchangeAndroid"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".ui.ProfileToyDemands"
+            android:exported="false" />
         <activity
             android:name=".ui.SwapDemand"
             android:exported="false" />
@@ -53,7 +56,6 @@
         <activity
             android:name=".ui.SignUp"
             android:exported="false" />
-
         <activity
             android:name=".ui.splashScreen"
             android:exported="true">
@@ -70,7 +72,6 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCUiJ74guiorFYKg13BBPxwO2jmaJYib0I" />
-
     </application>
 
 </manifest>

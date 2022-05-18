@@ -39,8 +39,15 @@ class DemandListFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?
     ): View? {
         val rootView = inflater.inflate(R.layout.fragment_demand_list, container, false)
-
         recylcerSwap = rootView.findViewById(R.id.demandListRecycleView)
+
+        init()
+
+        return rootView
+    }
+
+    private fun init(){
+
 
         sharedPreferences = requireActivity().getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
 
@@ -48,8 +55,6 @@ class DemandListFragment : Fragment() {
         val  us =  sharedPreferences.getString(myuser, "USER")
         nowuser = gson.fromJson(us, Client::class.java)
 
-        getToys()
-        //getSwaps(nowuser._id)
         getSwaps(nowuser._id)
 
         Log.d("swap count count", swapList.count().toString())
@@ -58,8 +63,6 @@ class DemandListFragment : Fragment() {
         recylcerSwapAdapter = SwapAdapter(swapList,toyList,nowuser._id)
         recylcerSwap.adapter = recylcerSwapAdapter
         recylcerSwap.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL ,false)
-
-        return rootView
     }
 
     private fun getToys(){
@@ -69,6 +72,8 @@ class DemandListFragment : Fragment() {
 
                 if (toy != null) {
                     toyList = toy
+                    recylcerSwapAdapter = SwapAdapter(swapList,toyList,nowuser._id)
+                    recylcerSwap.adapter = recylcerSwapAdapter
                 }
                 Log.d("toys",toy.toString())
             }
@@ -84,6 +89,7 @@ class DemandListFragment : Fragment() {
 
                 if (swap != null) {
                     swapList = swap
+                    getToys()
                 }
                 Log.d("swaps","///////////////////////////////")
                 Log.d("swaps",swap.toString())

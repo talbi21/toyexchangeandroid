@@ -11,25 +11,29 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.toyexchangeandroid.R
 import com.example.toyexchangeandroid.adapters.ProfileItemAdapter
-import com.example.toyexchangeandroid.databinding.FragmentHomeBinding
+import com.example.toyexchangeandroid.adapters.ProfileSwipeGesture
 import com.example.toyexchangeandroid.databinding.FragmentProfileBinding
 import com.example.toyexchangeandroid.models.Client
 import com.example.toyexchangeandroid.models.Toy
 import com.example.toyexchangeandroid.service.ApiService
-import com.example.toyexchangeandroid.ui.EditProfile
-import com.example.toyexchangeandroid.ui.PREF_NAME
-import com.example.toyexchangeandroid.ui.email
-import com.example.toyexchangeandroid.ui.myuser
+import com.example.toyexchangeandroid.ui.*
 import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import android.app.Activity
+import androidx.core.app.ActivityCompat.recreate
+import android.R.string.no
+
+
+
+
 
 class ProfileFragment : Fragment() {
 
@@ -80,25 +84,50 @@ class ProfileFragment : Fragment() {
 
         //----------------
 
-
-
         recylcerToy = bind.root.findViewById(R.id.mytoys)
 
         getmyToys(nowuser._id)
 
+        //---------------------------------------
         recylcerProfileItemAdapter = ProfileItemAdapter(requireContext(),toyList)
+
+        //-----------
+        val swipegesture = object : ProfileSwipeGesture(this@ProfileFragment) {
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                when(direction){
+                    ItemTouchHelper.LEFT ->{
+                        deleteItem(toyList[viewHolder.adapterPosition]._id)
+                    }
+                    ItemTouchHelper.RIGHT ->{
+
+                        val intent = Intent(this@ProfileFragment.requireContext(), ProfileToyDemands()::class.java)
+                        intent.putExtra("toyId",toyList[viewHolder.adapterPosition]._id)
+                        startActivity(intent)
+
+                    }
+                }
+
+            }
+
+        }
+
+
+        val touchHelper = ItemTouchHelper(swipegesture)
+        touchHelper.attachToRecyclerView(recylcerToy)
+        //---------------
         recylcerToy.adapter = recylcerProfileItemAdapter
         recylcerToy.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL ,false)
-
+        //----------------------------------------
 
         bind.btnToEditProfile.setOnClickListener{
             val intent = Intent(this@ProfileFragment.requireContext(), EditProfile::class.java)
             startActivity(intent)
         }
 
+
+
         return bind.root
     }
-
 
 
     private fun getmyToys(id:String){
@@ -117,5 +146,36 @@ class ProfileFragment : Fragment() {
             }
         })
     }
+
+    fun deleteItem (toyId:String) {
+
+        ApiService.toyService.deleteToy(
+            toyId
+        ).enqueue(
+            object : Callback<Toy> {
+                override fun onResponse(
+                    call: Call<Toy>,
+                    response: Response<Toy>
+                ) {
+                    if (response.code() == 200) {
+                        Log.d("HTTP DELETED SUCCESSS", "status code is " + response.code() + "DELETED SUCCESSFULLY")
+                    } else {
+                        Log.d("HTTP ERROR", "status code is " + response.code())
+                    }
+                }
+
+                override fun onFailure(
+                    call: Call<Toy>,
+                    t: Throwable
+                ) {
+                    Log.d("FAIL", "fail")
+                }
+            }
+        )
+
+        Log.d("deleteItem Id",toyId)
+
+    }
+
 
 }
