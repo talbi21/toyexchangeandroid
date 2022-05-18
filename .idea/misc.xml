@@ -53,6 +53,7 @@
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.18704710144927536" />
         <entry key="app/src/main/res/layout/activity_swap_demand.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_toy_details.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/activity_update_toy.xml" value="0.1875" />
         <entry key="app/src/main/res/layout/activity_verification_code.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/demand_list_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/element_toy.xml" value="0.1" />

@@ -86,7 +86,7 @@ class ProfileFragment : Fragment() {
 
         recylcerToy = bind.root.findViewById(R.id.mytoys)
 
-        getmyToys(nowuser._id)
+        getMyToys(nowuser._id)
 
         //---------------------------------------
         recylcerProfileItemAdapter = ProfileItemAdapter(requireContext(),toyList)
@@ -99,18 +99,13 @@ class ProfileFragment : Fragment() {
                         deleteItem(toyList[viewHolder.adapterPosition]._id)
                     }
                     ItemTouchHelper.RIGHT ->{
-
                         val intent = Intent(this@ProfileFragment.requireContext(), ProfileToyDemands()::class.java)
                         intent.putExtra("toyId",toyList[viewHolder.adapterPosition]._id)
                         startActivity(intent)
-
                     }
                 }
-
             }
-
         }
-
 
         val touchHelper = ItemTouchHelper(swipegesture)
         touchHelper.attachToRecyclerView(recylcerToy)
@@ -130,7 +125,7 @@ class ProfileFragment : Fragment() {
     }
 
 
-    private fun getmyToys(id:String){
+    private fun getMyToys(id:String){
         ApiService.toyService.getmyPosts(id).enqueue(object : Callback<MutableList<Toy>> {
             override fun onResponse(call: Call<MutableList<Toy>>, response: Response<MutableList<Toy>>) {
                 val toy = response.body()

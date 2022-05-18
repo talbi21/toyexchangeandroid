@@ -44,6 +44,7 @@ class ProfileToyDemands() : AppCompatActivity() {
 
         recylcerSwap = findViewById(R.id.ProfileToyDemandsRecycleView)
         recylcerSwapAdapter = ProfileToyDemandsAdapter(swapList,clientsList)
+
         recylcerSwap.adapter = recylcerSwapAdapter
         recylcerSwap.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL ,false)
 

@@ -1,12 +1,10 @@
 package com.example.toyexchangeandroid.service
 
 import com.example.toyexchangeandroid.models.Swap
+import com.example.toyexchangeandroid.models.Toy
 import com.google.gson.annotations.SerializedName
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface SwapService {
 
@@ -28,5 +26,7 @@ interface SwapService {
     @GET("/Swap/demandByToy/{idToy}" )
     fun demandByToy( @Path("idToy") idToy : String): Call<MutableList<Swap>>
 
+    @DELETE("/Swap/delete/{swapID}")
+    fun deleteSwap( @Path("swapID")swapID : String): Call<Swap>
 
 }

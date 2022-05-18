@@ -1,6 +1,7 @@
 package com.example.toyexchangeandroid.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -14,6 +15,8 @@ import com.example.toyexchangeandroid.models.Toy
 import com.example.toyexchangeandroid.service.ApiService
 import com.example.toyexchangeandroid.service.ApiService.BASE_URL
 import com.example.toyexchangeandroid.service.ToyService
+import com.example.toyexchangeandroid.ui.ProfileToyDemands
+import com.example.toyexchangeandroid.ui.UpdateToy
 import com.example.toyexchangeandroid.view_holder.ProfileToyViewHolder
 import retrofit2.Call
 import retrofit2.Callback
@@ -41,18 +44,18 @@ class ProfileItemAdapter(var context: Context, val ToyList: MutableList<Toy>) :
         holder.ToyName.text = toy.Name
 
 
-//        holder.itemView.setOnClickListener({
-//            Toast.makeText(context, toy.Name, Toast.LENGTH_LONG).show()
-//            var intent = Intent(context, Details::class.java)
-//
-//            intent.putExtra("image", toy.image)
-//            intent.putExtra("Name", toy.Name)
-//            intent.putExtra("description", toy.description)
-//            intent.putExtra("Price", toy.Price)
-//            intent.putExtra("_id", toy._id)
-//            context.startActivity(intent)
-//        })
-
+        holder.itemView.setOnClickListener {
+            var intent = Intent(context, UpdateToy::class.java)
+            intent.putExtra("_id", toy._id)
+            intent.putExtra("Name", toy.Name)
+            intent.putExtra("Description", toy.description)
+            intent.putExtra("Size", toy.Size)
+            intent.putExtra("Price", toy.Price)
+            intent.putExtra("Swapped", toy.Swapped)
+            intent.putExtra("OwnerId", toy.OwnerId)
+            intent.putExtra("image", toy.image)
+            context.startActivity(intent)
+        }
 
 
     }

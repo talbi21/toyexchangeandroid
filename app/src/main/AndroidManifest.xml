@@ -21,6 +21,9 @@
         android:theme="@style/Theme.ToyExchangeAndroid"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.UpdateToy"
+            android:exported="false" />
+        <activity
             android:name=".ui.ProfileToyDemands"
             android:exported="false" />
         <activity

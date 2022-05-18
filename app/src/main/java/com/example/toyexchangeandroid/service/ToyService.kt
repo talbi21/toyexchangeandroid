@@ -25,6 +25,14 @@ interface ToyService {
                 @Path("Price")Price : String,@Path("Swapped")Swapped : String,
                 @Path("Rating")Rating : String,@Path("OwnerId")OwnerId : String): Call<ToyResponse>
 
+    @Multipart
+    @POST("/Toy/update/{ID}/{Name}/{Description}/{Size}/{Price}/{Swapped}/{Rating}/{OwnerId}")
+    fun updatePost(@Part image: MultipartBody.Part,@Path("ID")ID : String,@Path("Name")Name : String,
+                @Path("Description")Description : String,@Path("Size")Size : String,
+                @Path("Price")Price : String,@Path("Swapped")Swapped : String,
+                @Path("Rating")Rating : String,@Path("OwnerId")OwnerId : String): Call<ToyResponse>
+
+
     @GET("/Toy")
     fun getPosts(): Call<MutableList<Toy>>
 
