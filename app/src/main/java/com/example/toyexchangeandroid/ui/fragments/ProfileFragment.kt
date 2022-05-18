@@ -22,13 +22,18 @@ import com.example.toyexchangeandroid.databinding.FragmentProfileBinding
 import com.example.toyexchangeandroid.models.Client
 import com.example.toyexchangeandroid.models.Toy
 import com.example.toyexchangeandroid.service.ApiService
-import com.example.toyexchangeandroid.ui.EditProfile
-import com.example.toyexchangeandroid.ui.PREF_NAME
-import com.example.toyexchangeandroid.ui.myuser
+import com.example.toyexchangeandroid.ui.*
 import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import android.app.Activity
+import androidx.core.app.ActivityCompat.recreate
+import android.R.string.no
+
+
+
+
 
 class ProfileFragment : Fragment() {
 
@@ -79,13 +84,9 @@ class ProfileFragment : Fragment() {
 
         //----------------
 
-
-
         recylcerToy = bind.root.findViewById(R.id.mytoys)
 
         getmyToys(nowuser._id)
-
-
 
         //---------------------------------------
         recylcerProfileItemAdapter = ProfileItemAdapter(requireContext(),toyList)
@@ -98,12 +99,18 @@ class ProfileFragment : Fragment() {
                         deleteItem(toyList[viewHolder.adapterPosition]._id)
                     }
                     ItemTouchHelper.RIGHT ->{
-                        goToDemandListByToy(toyList[viewHolder.adapterPosition]._id)
+
+                        val intent = Intent(this@ProfileFragment.requireContext(), ProfileToyDemands()::class.java)
+                        intent.putExtra("toyId",toyList[viewHolder.adapterPosition]._id)
+                        startActivity(intent)
+
                     }
                 }
 
             }
+
         }
+
 
         val touchHelper = ItemTouchHelper(swipegesture)
         touchHelper.attachToRecyclerView(recylcerToy)
@@ -117,9 +124,10 @@ class ProfileFragment : Fragment() {
             startActivity(intent)
         }
 
+
+
         return bind.root
     }
-
 
 
     private fun getmyToys(id:String){
@@ -167,12 +175,6 @@ class ProfileFragment : Fragment() {
 
         Log.d("deleteItem Id",toyId)
 
-
-
-    }
-
-    fun goToDemandListByToy(toyId: String){
-        Log.d("goToDemandListByToy Id",toyId)
     }
 
 

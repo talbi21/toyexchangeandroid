@@ -1,9 +1,12 @@
 package com.example.toyexchangeandroid.adapters
 
+import android.app.Activity
 import android.content.SharedPreferences
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.app.ActivityCompat
+import androidx.core.app.ActivityCompat.recreate
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.toyexchangeandroid.R
@@ -11,6 +14,11 @@ import com.example.toyexchangeandroid.models.Swap
 import com.example.toyexchangeandroid.models.Toy
 import com.example.toyexchangeandroid.service.ApiService
 import com.example.toyexchangeandroid.view_holder.SwapViewHolder
+import androidx.core.content.ContextCompat.startActivity
+
+import android.content.Intent
+import androidx.core.content.ContextCompat
+
 
 class SwapAdapter (val SwapList: MutableList<Swap>,val ToyList: MutableList<Toy>, val UserId: String) : RecyclerView.Adapter<SwapViewHolder>()  {
 
@@ -20,6 +28,7 @@ class SwapAdapter (val SwapList: MutableList<Swap>,val ToyList: MutableList<Toy>
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SwapViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.demand_list_item, parent, false)
+
 
         return SwapViewHolder(view)
     }
@@ -47,6 +56,7 @@ class SwapAdapter (val SwapList: MutableList<Swap>,val ToyList: MutableList<Toy>
                 }
             }
         }
+
 
         holder.itemView.setOnClickListener {
 

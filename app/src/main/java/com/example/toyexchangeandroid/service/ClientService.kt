@@ -2,12 +2,10 @@ package com.example.toyexchangeandroid.service
 
 import com.google.gson.annotations.SerializedName
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.POST
 import com.example.toyexchangeandroid.models.Client
+import com.example.toyexchangeandroid.models.Swap
 import com.example.toyexchangeandroid.models.Token
-import retrofit2.http.Header
-import retrofit2.http.Headers
+import retrofit2.http.*
 
 interface ClientService {
 
@@ -32,5 +30,10 @@ interface ClientService {
 
     @POST("/Client/add")
     fun register(@Body clientBody: ClientBody): Call<ClientResponse>
+
+
+    @GET("/Client/" )
+    fun allClients(): Call< MutableList<Client> >
+
 
 }
