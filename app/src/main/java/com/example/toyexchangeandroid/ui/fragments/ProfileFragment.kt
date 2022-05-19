@@ -102,6 +102,7 @@ class ProfileFragment : Fragment() {
                         val intent = Intent(this@ProfileFragment.requireContext(), ProfileToyDemands()::class.java)
                         intent.putExtra("toyId",toyList[viewHolder.adapterPosition]._id)
                         startActivity(intent)
+
                     }
                 }
             }
