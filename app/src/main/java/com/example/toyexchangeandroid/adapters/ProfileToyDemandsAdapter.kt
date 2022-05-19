@@ -6,12 +6,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.toyexchangeandroid.QrCode
+import com.example.toyexchangeandroid.ui.QrCode
 import com.example.toyexchangeandroid.R
 import com.example.toyexchangeandroid.models.Client
 import com.example.toyexchangeandroid.models.Swap
 import com.example.toyexchangeandroid.service.ApiService
-import com.example.toyexchangeandroid.ui.UpdateToy
 import com.example.toyexchangeandroid.view_holder.ProfileToyDemandsViewHolder
 
 class ProfileToyDemandsAdapter (var context: Context, val SwapList: MutableList<Swap>, val ClientList: MutableList<Client>) : RecyclerView.Adapter<ProfileToyDemandsViewHolder>() {

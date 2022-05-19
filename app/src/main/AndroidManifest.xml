@@ -20,7 +20,10 @@
         android:theme="@style/Theme.ToyExchangeAndroid"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".QrCode"
+            android:name=".ui.QrScanner"
+            android:exported="false" />
+        <activity
+            android:name=".ui.QrCode"
             android:exported="false" />
         <activity
             android:name=".ui.UpdateToy"
@@ -77,6 +80,8 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCUiJ74guiorFYKg13BBPxwO2jmaJYib0I" />
+
+
     </application>
 
 </manifest>

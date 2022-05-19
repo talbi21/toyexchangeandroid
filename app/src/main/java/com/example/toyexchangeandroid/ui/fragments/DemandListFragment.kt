@@ -22,6 +22,7 @@ import com.example.toyexchangeandroid.models.Toy
 import com.example.toyexchangeandroid.service.ApiService
 import com.example.toyexchangeandroid.ui.PREF_NAME
 import com.example.toyexchangeandroid.ui.ProfileToyDemands
+import com.example.toyexchangeandroid.ui.QrScanner
 import com.example.toyexchangeandroid.ui.myuser
 import com.google.gson.Gson
 import retrofit2.Call
@@ -76,7 +77,7 @@ class DemandListFragment : Fragment() {
                     }
                     ItemTouchHelper.RIGHT ->{
 
-                        val intent = Intent(this@DemandListFragment.requireContext(), ProfileToyDemands()::class.java)
+                        val intent = Intent(this@DemandListFragment.requireContext(), QrScanner()::class.java)
                         intent.putExtra("swapID",swapList[viewHolder.adapterPosition]._id)
                         startActivity(intent)
 

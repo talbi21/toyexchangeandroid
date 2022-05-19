@@ -1,4 +1,4 @@
-package com.example.toyexchangeandroid
+package com.example.toyexchangeandroid.ui
 
 import android.content.SharedPreferences
 import android.graphics.Bitmap
@@ -8,9 +8,8 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import com.example.toyexchangeandroid.R
 import com.example.toyexchangeandroid.models.Client
-import com.example.toyexchangeandroid.ui.PREF_NAME
-import com.example.toyexchangeandroid.ui.myuser
 import com.google.gson.Gson
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.WriterException

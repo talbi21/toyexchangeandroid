@@ -3,6 +3,7 @@ package com.example.toyexchangeandroid.service
 import com.example.toyexchangeandroid.models.Swap
 import com.example.toyexchangeandroid.models.Toy
 import com.google.gson.annotations.SerializedName
+import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -28,5 +29,11 @@ interface SwapService {
 
     @DELETE("/Swap/delete/{swapID}")
     fun deleteSwap( @Path("swapID")swapID : String): Call<Swap>
+
+    @POST("/Swap/update/{ID}/{Confirmed}")
+    fun acceptSwap(@Path("ID")ID : String,
+                   @Path("Confirmed")Confirmed : String,
+                  ): Call<Swap>
+
 
 }
