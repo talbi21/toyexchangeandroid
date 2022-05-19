@@ -62,6 +62,10 @@
             android:name=".ui.Login"
             android:exported="false" />
         <activity
+            android:name=".ui.myToys"
+            android:exported="false" />
+
+        <activity
             android:name=".ui.SignUp"
             android:exported="false" />
         <activity

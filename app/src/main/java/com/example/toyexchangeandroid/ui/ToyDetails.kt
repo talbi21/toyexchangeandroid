@@ -20,6 +20,7 @@ class ToyDetails : AppCompatActivity() {
     lateinit var  image :String
     lateinit var description :String
     lateinit var  Price :String
+    lateinit var  Owner :String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,11 +62,12 @@ class ToyDetails : AppCompatActivity() {
 
 
         var intent = intent
-         id = intent.getStringExtra("id").toString()
+         id = intent.getStringExtra("_id").toString()
          name = intent.getStringExtra("Name").toString()
          image = intent.getStringExtra("image").toString()
          description = intent.getStringExtra("description").toString()
          Price = intent.getStringExtra("Price").toString()
+        Owner = intent.getStringExtra("owner").toString()
 
 
         var txtDtId = findViewById<TextView>(R.id.nametv)
@@ -77,14 +79,23 @@ class ToyDetails : AppCompatActivity() {
         txtDtId.text = name.toString()
         txtDtprice.text = Price.toString()
         txtDtdesc.text = description.toString()
+        txtDtdesc.isEnabled = false
+        txtDtId.isEnabled = false
+        txtDtprice.isEnabled = false
+
         Glide.with(dImage).load(ApiService.BASE_URL + image).placeholder(R.drawable.imageload)
             .override(1000, 1000).error(R.drawable.notfoundd).into(dImage)
 
 
         btnDemand!!.setOnClickListener {
             val mainIntent = Intent(this, SwapDemand::class.java)
+
+            mainIntent.putExtra("image", image)
+            mainIntent.putExtra("Price", Price)
+            mainIntent.putExtra("_id", id)
+            mainIntent.putExtra("owner", Owner)
             startActivity(mainIntent)
-            finish()
+            
         }
 
     }

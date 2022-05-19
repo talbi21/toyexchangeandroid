@@ -41,6 +41,7 @@ class ToyAdapter(var context: Context, val ToyList: MutableList<Toy>) :
             intent.putExtra("description", toy.description)
             intent.putExtra("Price", toy.Price)
             intent.putExtra("_id", toy._id)
+            intent.putExtra("owner", toy.OwnerId)
 
             context.startActivity(intent)
 

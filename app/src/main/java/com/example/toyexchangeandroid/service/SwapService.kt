@@ -15,10 +15,13 @@ interface SwapService {
     )
 
     data class SwapBody(val idToy1: String, val IdToy2: String,val IdClient1 :String, val IdClient2:String,val SwapType:String,val Confirmed:String)
-
+    data class BuyBody(val IdToy2: String,val IdClient1 :String, val IdClient2:String,val SwapType:String,val Confirmed:String)
 
     @POST("/Swap/add")
     fun addSwapDemand(@Body postBody: SwapBody): Call<SwapResponse>
+
+    @POST("/Swap/add")
+    fun addBuyDemand(@Body postBody: BuyBody): Call<SwapResponse>
 
     @GET("/Swap/demandByClient/{idClient1}" )
     fun demandByClient1( @Path("idClient1") idClient1 : String): Call<MutableList<Swap>>

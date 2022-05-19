@@ -3,51 +3,70 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-       >
-
+        android:orientation="vertical"
+        android:layout_marginBottom="5dp"
+        >
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:orientation="vertical">
-            <ImageView
-                android:id="@+id/ToyPicClient1"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_gravity="center"
-                android:src="@drawable/bg_dark_rounded" />
+            android:orientation="horizontal"
+            android:layout_marginBottom="5dp"
+            android:layout_margin="5dp">
 
-            <ImageView
-                android:id="@+id/ToyPic3"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/ToyPicClient1"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/bg_dark_rounded" />
+
+                <ImageView
+                    android:id="@+id/ToyPic3"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_swap_calls_24" />
+
+                <ImageView
+                    android:id="@+id/ToyPicClient2"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/bg_dark_rounded" />
+
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/SwapDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_gravity="center"
-                android:src="@drawable/ic_swap_calls_24" />
+                android:text="Demand to swap"
+                android:textSize="18dp" />
 
-            <ImageView
-                android:id="@+id/ToyPicClient2"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_gravity="center"
-                android:src="@drawable/bg_dark_rounded" />
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/SwapDescription"
+        <View
+            android:id="@+id/view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_gravity="center"
-            android:text="Demand to swap"
-            android:textSize="18dp" />
-
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            />
     </LinearLayout>
+
+
 
 </androidx.cardview.widget.CardView>
