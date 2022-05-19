@@ -5,6 +5,7 @@ import retrofit2.Call
 import com.example.toyexchangeandroid.models.Client
 import com.example.toyexchangeandroid.models.Swap
 import com.example.toyexchangeandroid.models.Token
+import okhttp3.MultipartBody
 import retrofit2.http.*
 
 interface ClientService {
@@ -35,5 +36,15 @@ interface ClientService {
     @GET("/Client/" )
     fun allClients(): Call< MutableList<Client> >
 
+
+    @Multipart
+    @POST("/Client/update/{ID}/{userName}/{email}/{phoneNumber}")
+    fun updateClient(@Part image: MultipartBody.Part,@Path("ID")ID : String,@Path("userName")userName : String,
+                     @Path("email")email : String,@Path("phoneNumber")phoneNumber : String): Call<Client>
+
+
+    @POST("/Client/updatewithoutimage/{ID}/{userName}/{email}/{phoneNumber}")
+    fun updateClientWithoutImage(@Path("ID")ID : String,@Path("userName")userName : String,
+                               @Path("email")email : String,@Path("phoneNumber")phoneNumber : String): Call<Client>
 
 }
