@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.toyexchangeandroid.R
@@ -33,6 +34,7 @@ class ProfileToyDemands() : AppCompatActivity() {
     }
 
     private fun init ( ){
+
         val myIntent = intent
         idToy = myIntent.getStringExtra("toyId").toString()
 
@@ -43,7 +45,8 @@ class ProfileToyDemands() : AppCompatActivity() {
         getClients()
 
         recylcerSwap = findViewById(R.id.ProfileToyDemandsRecycleView)
-        recylcerSwapAdapter = ProfileToyDemandsAdapter(swapList,clientsList)
+        recylcerSwapAdapter = ProfileToyDemandsAdapter(this,swapList,clientsList)
+
         recylcerSwap.adapter = recylcerSwapAdapter
         recylcerSwap.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL ,false)
 
@@ -77,7 +80,7 @@ class ProfileToyDemands() : AppCompatActivity() {
                 if (swap != null) {
 
                     swapList = swap
-                    recylcerSwapAdapter = ProfileToyDemandsAdapter(swapList,clientsList)
+                    recylcerSwapAdapter = ProfileToyDemandsAdapter(this@ProfileToyDemands,swapList,clientsList)
                     recylcerSwap.adapter = recylcerSwapAdapter
                 }
                 Log.d("swaps","///////////////////////////////")

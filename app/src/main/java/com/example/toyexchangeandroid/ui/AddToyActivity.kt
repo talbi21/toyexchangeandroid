@@ -3,6 +3,7 @@ package com.example.toyexchangeandroid.ui
 import android.Manifest
 import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -15,11 +16,13 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.toyexchangeandroid.R
+import com.example.toyexchangeandroid.models.Client
 import com.example.toyexchangeandroid.models.fileutil
 import com.example.toyexchangeandroid.service.ApiService
 import com.example.toyexchangeandroid.service.ToyService
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import com.google.gson.Gson
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 
 
@@ -44,6 +47,10 @@ class AddToyActivity : AppCompatActivity() {
     lateinit var uri: Uri
     var f: fileutil = fileutil()
 
+    private lateinit var sharedPreferences: SharedPreferences
+    lateinit var nowuser : Client
+
+
     private var txtLayoutName: TextInputLayout? = null
     private var txtLayoutDescription: TextInputLayout? = null
     private var txtLayoutSize: TextInputLayout? = null
@@ -53,6 +60,8 @@ class AddToyActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_toy)
 
+
+        sharedPreferences = this.getSharedPreferences(PREF_NAME, MODE_PRIVATE)
 
         txtName= findViewById(R.id.txtName)
         txtDescription = findViewById(R.id.txtDescription)
@@ -65,6 +74,14 @@ class AddToyActivity : AppCompatActivity() {
         txtLayoutDescription = findViewById(R.id.txtLayoutDescription)
         txtLayoutSize = findViewById(R.id.txtLayoutSize)
         txtLayoutPrice = findViewById(R.id.txtLayoutPrice)
+        sharedPreferences = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
+
+
+        val gson = Gson()
+        val  us =  sharedPreferences.getString(myuser, "USER")
+
+        nowuser = gson.fromJson(us,Client::class.java)
+
 
         imagebutt!!.setOnClickListener {
             val fintent = Intent(Intent.ACTION_GET_CONTENT)
@@ -108,14 +125,13 @@ class AddToyActivity : AppCompatActivity() {
 
             ApiService.toyService.addPost(
                 imagee,
-
                     txtName!!.text.toString() ,
                     txtDescription!!.text.toString(),
                     txtPrice!!.text.toString(),
                     txtSize!!.text.toString(),
                     "false",
                     "1",
-                    "aaa"
+                    nowuser._id
 
             ).enqueue(
                 object : Callback<ToyService.ToyResponse> {
@@ -145,6 +161,9 @@ class AddToyActivity : AppCompatActivity() {
 
     }
 
+    fun init(){
+
+    }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (data == null) return

@@ -82,16 +82,16 @@ class ProfileFragment : Fragment() {
         Glide.with(test).load(ApiService.BASE_URL + nowuser.image).placeholder(R.drawable.imageload).circleCrop()
             .error(R.drawable.default_user).into(test)
 
-        //----------------
+        //---------------------------------------
 
         recylcerToy = bind.root.findViewById(R.id.mytoys)
 
-        getmyToys(nowuser._id)
+        getMyToys(nowuser._id)
 
         //---------------------------------------
         recylcerProfileItemAdapter = ProfileItemAdapter(requireContext(),toyList)
 
-        //-----------
+        //---------------------------------------
         val swipegesture = object : ProfileSwipeGesture(this@ProfileFragment) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 when(direction){
@@ -99,18 +99,14 @@ class ProfileFragment : Fragment() {
                         deleteItem(toyList[viewHolder.adapterPosition]._id)
                     }
                     ItemTouchHelper.RIGHT ->{
-
                         val intent = Intent(this@ProfileFragment.requireContext(), ProfileToyDemands()::class.java)
                         intent.putExtra("toyId",toyList[viewHolder.adapterPosition]._id)
                         startActivity(intent)
 
                     }
                 }
-
             }
-
         }
-
 
         val touchHelper = ItemTouchHelper(swipegesture)
         touchHelper.attachToRecyclerView(recylcerToy)
@@ -125,12 +121,11 @@ class ProfileFragment : Fragment() {
         }
 
 
-
         return bind.root
     }
 
 
-    private fun getmyToys(id:String){
+    private fun getMyToys(id:String){
         ApiService.toyService.getmyPosts(id).enqueue(object : Callback<MutableList<Toy>> {
             override fun onResponse(call: Call<MutableList<Toy>>, response: Response<MutableList<Toy>>) {
                 val toy = response.body()
