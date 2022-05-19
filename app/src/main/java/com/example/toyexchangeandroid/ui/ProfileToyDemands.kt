@@ -33,6 +33,7 @@ class ProfileToyDemands() : AppCompatActivity() {
     }
 
     private fun init ( ){
+
         val myIntent = intent
         idToy = myIntent.getStringExtra("toyId").toString()
 

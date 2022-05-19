@@ -82,7 +82,7 @@ class ProfileFragment : Fragment() {
         Glide.with(test).load(ApiService.BASE_URL + nowuser.image).placeholder(R.drawable.imageload).circleCrop()
             .error(R.drawable.default_user).into(test)
 
-        //----------------
+        //---------------------------------------
 
         recylcerToy = bind.root.findViewById(R.id.mytoys)
 
@@ -91,7 +91,7 @@ class ProfileFragment : Fragment() {
         //---------------------------------------
         recylcerProfileItemAdapter = ProfileItemAdapter(requireContext(),toyList)
 
-        //-----------
+        //---------------------------------------
         val swipegesture = object : ProfileSwipeGesture(this@ProfileFragment) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 when(direction){
@@ -118,7 +118,6 @@ class ProfileFragment : Fragment() {
             val intent = Intent(this@ProfileFragment.requireContext(), EditProfile::class.java)
             startActivity(intent)
         }
-
 
 
         return bind.root

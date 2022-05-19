@@ -72,7 +72,10 @@ class UpdateToy : AppCompatActivity() {
         txtLayoutSize = findViewById(R.id.txtLayoutSize)
         txtLayoutPrice = findViewById(R.id.txtLayoutPrice)
 
+
         init()
+        uri = Uri.parse(image)
+
 
         Glide.with(imagebutt!!).load(ApiService.BASE_URL + image).placeholder(R.drawable.imageload)
             .override(1000, 1000).error(R.drawable.notfoundd).into(imagebutt!!)
@@ -81,7 +84,6 @@ class UpdateToy : AppCompatActivity() {
         txtDescription!!.setText(description)
         txtSize!!.setText(size)
         txtPrice!!.setText(price)
-
 
         
         imagebutt!!.setOnClickListener {
@@ -121,46 +123,91 @@ class UpdateToy : AppCompatActivity() {
 
             checkAndRequestPermission()
 
-            val file = File(f.getPath(uri, this))
-            val reqFile = RequestBody.create("Image/*".toMediaTypeOrNull(), file)
-            var imagee = MultipartBody.Part.createFormData(
-                "Image",
-                file.getName(), reqFile
-            )
 
-            ApiService.toyService.updatePost(
-                imagee,
-                idToy,
-                txtName!!.text.toString() ,
-                txtDescription!!.text.toString(),
-                txtPrice!!.text.toString(),
-                txtSize!!.text.toString(),
-                swapped,
-                "1",
-                ownerId
+            if(uri != Uri.parse(image) ){
 
-            ).enqueue(
-                object : Callback<ToyService.ToyResponse> {
-                    override fun onResponse(
-                        call: Call<ToyService.ToyResponse>,
-                        response: Response<ToyService.ToyResponse>
-                    ) {
-                        if (response.code() == 200) {
-                            Toast.makeText(this@UpdateToy, "Toy  updated!!!", Toast.LENGTH_SHORT).show()
+                val file = File(f.getPath(uri, this))
+                val reqFile = RequestBody.create("Image/*".toMediaTypeOrNull(), file)
+                var imagee = MultipartBody.Part.createFormData(
+                    "Image",
+                    file.getName(), reqFile
+                )
 
-                        } else {
-                            Log.d("HTTP ERROR", "status code is " + response.code())
+
+                ApiService.toyService.updatePost(
+                    imagee,
+                    idToy,
+                    txtName!!.text.toString() ,
+                    txtDescription!!.text.toString(),
+                    txtPrice!!.text.toString(),
+                    txtSize!!.text.toString(),
+                    swapped,
+                    "1",
+                    ownerId
+
+                ).enqueue(
+                    object : Callback<ToyService.ToyResponse> {
+                        override fun onResponse(
+                            call: Call<ToyService.ToyResponse>,
+                            response: Response<ToyService.ToyResponse>
+                        ) {
+                            if (response.code() == 200) {
+                                Toast.makeText(this@UpdateToy, "Toy  updated!!!", Toast.LENGTH_SHORT).show()
+
+                            } else {
+                                Log.d("HTTP ERROR", "status code is " + response.code())
+                            }
+                        }
+
+                        override fun onFailure(
+                            call: Call<ToyService.ToyResponse>,
+                            t: Throwable
+                        ) {
+                            Log.d("FAIL", "fail")
                         }
                     }
+                )
 
-                    override fun onFailure(
-                        call: Call<ToyService.ToyResponse>,
-                        t: Throwable
-                    ) {
-                        Log.d("FAIL", "fail")
+
+            }else{
+
+                ApiService.toyService.updatePostWithoutImage(
+                    idToy,
+                    txtName!!.text.toString() ,
+                    txtDescription!!.text.toString(),
+                    txtPrice!!.text.toString(),
+                    txtSize!!.text.toString(),
+                    swapped,
+                    "1",
+                    ownerId
+
+                ).enqueue(
+                    object : Callback<ToyService.ToyResponse> {
+                        override fun onResponse(
+                            call: Call<ToyService.ToyResponse>,
+                            response: Response<ToyService.ToyResponse>
+                        ) {
+                            if (response.code() == 200) {
+                                Toast.makeText(this@UpdateToy, "Toy  updated!!!", Toast.LENGTH_SHORT).show()
+
+                            } else {
+                                Log.d("HTTP ERROR", "status code is " + response.code())
+                            }
+                        }
+
+                        override fun onFailure(
+                            call: Call<ToyService.ToyResponse>,
+                            t: Throwable
+                        ) {
+                            Log.d("FAIL", "fail")
+                        }
                     }
-                }
-            )
+                )
+
+            }
+
+
+
         }
 
 
@@ -179,6 +226,7 @@ class UpdateToy : AppCompatActivity() {
         image = myIntent.getStringExtra("image").toString()
 
 
+
     }
 
         private val apppermissions = arrayOf<String>(
@@ -187,6 +235,18 @@ class UpdateToy : AppCompatActivity() {
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.READ_EXTERNAL_STORAGE
         )
+
+        override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+            super.onActivityResult(requestCode, resultCode, data)
+            if (data == null) return
+            when (requestCode) {
+                100 -> if (resultCode == RESULT_OK) {
+                    uri = data.data!!
+                    imagebutt!!.setImageURI(data.data)
+
+                }
+            }
+        }
 
         private fun checkAndRequestPermission(): Boolean {
             val builder = StrictMode.VmPolicy.Builder()

@@ -47,7 +47,7 @@ class AddToyActivity : AppCompatActivity() {
     lateinit var uri: Uri
     var f: fileutil = fileutil()
 
-    lateinit var sharedPreferences: SharedPreferences
+    private lateinit var sharedPreferences: SharedPreferences
     lateinit var nowuser : Client
 
 
@@ -60,6 +60,8 @@ class AddToyActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_toy)
 
+
+        sharedPreferences = this.getSharedPreferences(PREF_NAME, MODE_PRIVATE)
 
         txtName= findViewById(R.id.txtName)
         txtDescription = findViewById(R.id.txtDescription)
@@ -157,6 +159,9 @@ class AddToyActivity : AppCompatActivity() {
 
     }
 
+    fun init(){
+
+    }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (data == null) return
