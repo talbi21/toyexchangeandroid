@@ -74,9 +74,11 @@ class AddToyActivity : AppCompatActivity() {
         txtLayoutDescription = findViewById(R.id.txtLayoutDescription)
         txtLayoutSize = findViewById(R.id.txtLayoutSize)
         txtLayoutPrice = findViewById(R.id.txtLayoutPrice)
+        mSharedPref = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
+
 
         val gson = Gson()
-        val  us =  sharedPreferences.getString(myuser, "USER")
+        val  us =  mSharedPref.getString(myuser, "USER")
 
         nowuser = gson.fromJson(us,Client::class.java)
 
