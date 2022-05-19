@@ -1,20 +1,29 @@
 package com.example.toyexchangeandroid.adapters
 
+import android.app.Activity
 import android.content.Context
+import android.content.Context.MODE_PRIVATE
 import android.content.Intent
+import android.content.SharedPreferences
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.toyexchangeandroid.R
 import com.example.toyexchangeandroid.models.Toy
 import com.example.toyexchangeandroid.service.ApiService.BASE_URL
-import com.example.toyexchangeandroid.ui.UpdateToy
+import com.example.toyexchangeandroid.ui.PREF_NAME
+import com.example.toyexchangeandroid.ui.SwapDemand
+import com.example.toyexchangeandroid.ui.myuser
 import com.example.toyexchangeandroid.view_holder.ProfileToyViewHolder
 
 
-class ProfileItemAdapter(var context: Context, val ToyList: MutableList<Toy>) :
-    RecyclerView.Adapter<ProfileToyViewHolder>() {
+class MyToysAdapter(var context: Context, val ToyList: MutableList<Toy>)  :
+    RecyclerView.Adapter<ProfileToyViewHolder>()  {
+    
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProfileToyViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -34,17 +43,20 @@ class ProfileItemAdapter(var context: Context, val ToyList: MutableList<Toy>) :
         holder.ToyName.text = toy.Name
 
 
+
         holder.itemView.setOnClickListener {
-            var intent = Intent(context, UpdateToy::class.java)
-            intent.putExtra("_id", toy._id)
-            intent.putExtra("Name", toy.Name)
-            intent.putExtra("Description", toy.description)
-            intent.putExtra("Size", toy.Size)
-            intent.putExtra("Price", toy.Price)
-            intent.putExtra("Swapped", toy.Swapped)
-            intent.putExtra("OwnerId", toy.OwnerId)
-            intent.putExtra("image", toy.image)
+
+
+
+            var intent = Intent(context, SwapDemand::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP;
             context.startActivity(intent)
+
+
+
+
+
+
         }
 
 
@@ -57,3 +69,4 @@ class ProfileItemAdapter(var context: Context, val ToyList: MutableList<Toy>) :
 
 
 }
+

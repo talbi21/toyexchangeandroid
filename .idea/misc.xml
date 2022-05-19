@@ -16,7 +16,9 @@
         <entry key="..\:/dev/MiniProjetKotlin/app/src/main/res/layout/activity_sent_verification_email.xml" value="0.15208333333333332" />
         <entry key="..\:/dev/MiniProjetKotlin/app/src/main/res/layout/activity_sign_up.xml" value="0.1" />
         <entry key="..\:/dev/MiniProjetKotlin/app/src/main/res/layout/activity_splash_screen.xml" value="0.1" />
+        <entry key="..\:/dev/MiniProjetKotlin/app/src/main/res/layout/activity_swap_demand.xml" value="0.1" />
         <entry key="..\:/dev/MiniProjetKotlin/app/src/main/res/layout/activity_toy_details.xml" value="0.15208333333333332" />
+        <entry key="..\:/dev/MiniProjetKotlin/app/src/main/res/layout/demand_list_item.xml" value="0.1" />
         <entry key="..\:/dev/MiniProjetKotlin/app/src/main/res/layout/element_toy.xml" value="0.1" />
         <entry key="..\:/dev/MiniProjetKotlin/app/src/main/res/layout/fragment_add.xml" value="0.15208333333333332" />
         <entry key="..\:/dev/MiniProjetKotlin/app/src/main/res/layout/fragment_demand_list.xml" value="0.15208333333333332" />
@@ -26,6 +28,7 @@
         <entry key="..\:/dev/MiniProjetKotlin/app/src/main/res/layout/fragment_profile.xml" value="0.30416666666666664" />
         <entry key="..\:/dev/MiniProjetKotlin/app/src/main/res/layout/home_item.xml" value="0.30416666666666664" />
         <entry key="..\:/dev/MiniProjetKotlin/app/src/main/res/layout/liked_list_item.xml" value="0.33" />
+        <entry key="..\:/dev/MiniProjetKotlin/app/src/main/res/layout/my_toys.xml" value="0.13360120542440984" />
         <entry key="..\:/dev/MiniProjetKotlin/app/src/main/res/layout/row_item.xml" value="0.1" />
         <entry key="..\:/dev/MiniProjetKotlin/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.32916666666666666" />
         <entry key="..\:/dev/ToyExchangeAndroid/app/src/main/res/drawable/ic_launcher_background.xml" value="0.32916666666666666" />
