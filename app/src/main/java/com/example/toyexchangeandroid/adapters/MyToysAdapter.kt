@@ -22,8 +22,7 @@ import com.example.toyexchangeandroid.view_holder.ProfileToyViewHolder
 
 class MyToysAdapter(var context: Context, val ToyList: MutableList<Toy>)  :
     RecyclerView.Adapter<ProfileToyViewHolder>()  {
-
-    lateinit var mSharedPreferences: SharedPreferences
+    
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProfileToyViewHolder {
@@ -47,10 +46,7 @@ class MyToysAdapter(var context: Context, val ToyList: MutableList<Toy>)  :
 
         holder.itemView.setOnClickListener {
 
-            mSharedPreferences.edit().apply(){
 
-                putString("toyToSwap",toy.image)
-            }
 
             var intent = Intent(context, SwapDemand::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP;
