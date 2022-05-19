@@ -47,7 +47,7 @@ class AddToyActivity : AppCompatActivity() {
     lateinit var uri: Uri
     var f: fileutil = fileutil()
 
-    lateinit var sharedPreferences: SharedPreferences
+    lateinit var mSharedPref: SharedPreferences
     lateinit var nowuser : Client
 
 
@@ -61,6 +61,8 @@ class AddToyActivity : AppCompatActivity() {
         setContentView(R.layout.activity_add_toy)
 
 
+
+
         txtName= findViewById(R.id.txtName)
         txtDescription = findViewById(R.id.txtDescription)
         txtSize = findViewById(R.id.txtSize)
@@ -72,9 +74,11 @@ class AddToyActivity : AppCompatActivity() {
         txtLayoutDescription = findViewById(R.id.txtLayoutDescription)
         txtLayoutSize = findViewById(R.id.txtLayoutSize)
         txtLayoutPrice = findViewById(R.id.txtLayoutPrice)
+        mSharedPref = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
+
 
         val gson = Gson()
-        val  us =  sharedPreferences.getString(myuser, "USER")
+        val  us =  mSharedPref.getString(myuser, "USER")
 
         nowuser = gson.fromJson(us,Client::class.java)
 
