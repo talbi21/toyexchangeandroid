@@ -47,4 +47,8 @@ interface ClientService {
     fun updateClientWithoutImage(@Path("ID")ID : String,@Path("userName")userName : String,
                                @Path("email")email : String,@Path("phoneNumber")phoneNumber : String): Call<Client>
 
+    data class updatePassBody(val oldPassword: String, val newPassword: String)
+
+    @POST("/Client/updatePassword/{ID}")
+    fun updatePassword(@Path("ID")ID : String,@Body updatePassBody: updatePassBody): Call<ClientResponse>
 }
