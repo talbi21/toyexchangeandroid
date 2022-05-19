@@ -20,6 +20,9 @@
         android:theme="@style/Theme.ToyExchangeAndroid"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".QrCode"
+            android:exported="false" />
+        <activity
             android:name=".ui.UpdateToy"
             android:exported="false" />
         <activity

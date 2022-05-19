@@ -1,16 +1,20 @@
 package com.example.toyexchangeandroid.adapters
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.toyexchangeandroid.QrCode
 import com.example.toyexchangeandroid.R
 import com.example.toyexchangeandroid.models.Client
 import com.example.toyexchangeandroid.models.Swap
 import com.example.toyexchangeandroid.service.ApiService
+import com.example.toyexchangeandroid.ui.UpdateToy
 import com.example.toyexchangeandroid.view_holder.ProfileToyDemandsViewHolder
 
-class ProfileToyDemandsAdapter (val SwapList: MutableList<Swap>,val ClientList: MutableList<Client>) : RecyclerView.Adapter<ProfileToyDemandsViewHolder>() {
+class ProfileToyDemandsAdapter (var context: Context, val SwapList: MutableList<Swap>, val ClientList: MutableList<Client>) : RecyclerView.Adapter<ProfileToyDemandsViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProfileToyDemandsViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.profile_toy_demands_item, parent, false)
@@ -30,6 +34,12 @@ class ProfileToyDemandsAdapter (val SwapList: MutableList<Swap>,val ClientList: 
                 holder.DemandMadeBy.text = client.userName
                 holder.DemandType.text = swap.SwapType
             }
+        }
+
+        holder.itemView.setOnClickListener {
+            var intent = Intent(context, QrCode::class.java)
+            intent.putExtra("swapID", swap._id)
+            context.startActivity(intent)
         }
 
     }
