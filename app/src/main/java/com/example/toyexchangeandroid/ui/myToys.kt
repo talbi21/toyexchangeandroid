@@ -71,6 +71,8 @@ class myToys : AppCompatActivity() {
     }
 
 
+    fun finishMe() { finish() }
+
 
 
     private fun getmyToys(id: String) {

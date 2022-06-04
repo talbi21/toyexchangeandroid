@@ -14,20 +14,25 @@ import com.bumptech.glide.Glide
 import com.example.toyexchangeandroid.R
 import com.example.toyexchangeandroid.models.Toy
 import com.example.toyexchangeandroid.service.ApiService.BASE_URL
-import com.example.toyexchangeandroid.ui.PREF_NAME
-import com.example.toyexchangeandroid.ui.SwapDemand
-import com.example.toyexchangeandroid.ui.myuser
+import com.example.toyexchangeandroid.ui.*
 import com.example.toyexchangeandroid.view_holder.ProfileToyViewHolder
 
 
 class MyToysAdapter(var context: Context, val ToyList: MutableList<Toy>)  :
     RecyclerView.Adapter<ProfileToyViewHolder>()  {
-    
+
+
+    lateinit var sharedPreferences: SharedPreferences
+    private val activity : myToys = context as myToys
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProfileToyViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.liked_list_item, parent, false)
+
+        sharedPreferences = context.getSharedPreferences(PREF_NAME,MODE_PRIVATE)
+
+
 
         return ProfileToyViewHolder(view)
     }
@@ -46,26 +51,21 @@ class MyToysAdapter(var context: Context, val ToyList: MutableList<Toy>)  :
 
         holder.itemView.setOnClickListener {
 
+            //var intent = Intent(context, SwapDemand::class.java)
+            //intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP;
+            //context.startActivity(intent)
+            sharedPreferences.edit().apply {
+                putString("SwappedID", toy._id)
+                putString("SwappedImage", toy.image)
 
-
-            var intent = Intent(context, SwapDemand::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP;
-            context.startActivity(intent)
-
-
-
-
-
+            }.apply()
+            activity.finishMe()
 
         }
-
 
     }
 
     override fun getItemCount() = ToyList.size
-
-
-
 
 
 }
