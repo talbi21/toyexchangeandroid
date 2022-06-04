@@ -70,6 +70,7 @@ dependencies {
     implementation ('com.mapbox.mapboxsdk:mapbox-android-sdk:8.4.0@aar'){
         transitive=true
     }
+
     //implementation 'com.mapbox.maps:android:10.5.0'
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
     implementation 'com.google.android.gms:play-services-location:17.0.0'

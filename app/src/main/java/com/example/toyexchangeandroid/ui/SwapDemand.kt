@@ -41,6 +41,10 @@ class SwapDemand : AppCompatActivity() {
         //------------------
         val gson = Gson()
         val  us =  sharedPreferences.getString(myuser, "USER")
+        val  swappedID =  sharedPreferences.getString("SwappedID", "SwappedID")
+        val  swappedImage =  sharedPreferences.getString("SwappedImage", "SwappedImage")
+        Log.d("swappedID", swappedID.toString())
+        Log.d("swappedImage", swappedImage.toString())
 
         nowuser = gson.fromJson(us,Client::class.java)
         Log.d("///////////////////","///////////////////")
@@ -58,28 +62,31 @@ class SwapDemand : AppCompatActivity() {
       Log.d("imageTOY", image!!)
 
 
-
-
+        var btnSwap = findViewById<Button>(R.id.btnAddSwap)
         var btnBuy = findViewById<Button>(R.id.btnAddBuy)
         var txtprice = findViewById<TextView>(R.id.ToyPrice)
         var dImage=findViewById<ImageView>(R.id.ToyPicClient1)
         var dImage2=findViewById<ImageView>(R.id.ToyPicClient2)
 
         dImage2.setOnClickListener {
-
             var intent2 = Intent(this, myToys::class.java)
-
-
             startActivity(intent2)
-
         }
+        btnSwap.setOnClickListener{
+            demandSwap(id!!,swappedID.toString(),nowuser._id, Owner!!,"swap","false")
+        }
+
+        Glide.with(dImage2).load(ApiService.BASE_URL + swappedImage.toString()).placeholder(R.drawable.imageload)
+            .override(1000, 1000).error(R.drawable.notfoundd).into(dImage2)
+
+
+
 
         btnBuy.setOnClickListener{
-
-
             demandBuy(id!!,nowuser._id, Owner!!,"buy","false")
-
         }
+
+
 
         Glide.with(dImage).load(ApiService.BASE_URL + image).placeholder(R.drawable.imageload)
             .override(1000, 1000).error(R.drawable.notfoundd).into(dImage)
@@ -92,6 +99,30 @@ class SwapDemand : AppCompatActivity() {
         ApiService.swapService.addBuyDemand(SwapService.BuyBody(
             idToy,IdClient1,IdClient2,SwapType,Confirmed
         )).enqueue(object : Callback<SwapService.SwapResponse> {
+            override fun onResponse(
+                call: Call<SwapService.SwapResponse>,
+                response: Response<SwapService.SwapResponse>
+            ) {
+                Toast.makeText(this@SwapDemand,"confirmed demand", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this@SwapDemand, MainActivity::class.java)
+                startActivity(intent)
+            }
+            override fun onFailure(call: Call<SwapService.SwapResponse>, t: Throwable) {
+//                Toast.makeText(this@SwapDemand,"erreur" + t.message, Toast.LENGTH_SHORT).show()
+//                Log.d("Er",t.message.toString())
+                Toast.makeText(this@SwapDemand,"confirmed demand", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this@SwapDemand, MainActivity::class.java)
+                startActivity(intent)
+            }
+        })
+    }
+
+
+
+    fun demandSwap(idToy1:String,idToy2:String,IdClient1 :String,IdClient2:String, SwapType:String, Confirmed:String,){
+        ApiService.swapService.addSwapDemand(
+            SwapService.SwapBody(idToy1,idToy2,IdClient1,IdClient2,SwapType,Confirmed)
+        ).enqueue(object : Callback<SwapService.SwapResponse> {
             override fun onResponse(
                 call: Call<SwapService.SwapResponse>,
                 response: Response<SwapService.SwapResponse>
